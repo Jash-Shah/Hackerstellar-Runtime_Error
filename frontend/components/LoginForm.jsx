@@ -79,10 +79,10 @@ function LoginForm() {
 
                 <div className="mb-2 ">
                     <p class="block text-base font-medium text-gray-700 dark:text-gray-300">I am a: </p>
-                    <Radio.Group onChange={onRadioChange} value={type}>
-                        <Radio value={"User"}>User</Radio>
-                        <Radio value={"Retailer"}>Retailer</Radio>
-                        <Radio value={"Manufacturer"}>Manufacturer</Radio>
+                    <Radio.Group  onChange={onRadioChange} value={type}>
+                        <Radio className="dark:text-gray-300" value={"User"}>User</Radio>
+                        <Radio className="dark:text-gray-300" value={"Retailer"}>Retailer</Radio>
+                        <Radio className="dark:text-gray-300" value={"Manufacturer"}>Manufacturer</Radio>
                     </Radio.Group>
                 </div>
                 <Form.Item>
@@ -102,7 +102,7 @@ function LoginForm() {
                         Login
                     </Button>
                     <div class="text-sm mt-2 font-medium text-gray-500 dark:text-gray-300">
-                        Not registered? <a href="/register" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
+                        Not registered? <a href="/register" class="text-blue-700 hover:underline dark:text-blue-500">Create an account</a>
                     </div>
                 </Form.Item>
             </Form>
