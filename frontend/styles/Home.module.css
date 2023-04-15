@@ -1,0 +1,101 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem;
+    max-width: 800px;
+    margin: auto;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+
+.title {
+    background-color: rgb(44, 44, 44);
+    margin: 1rem;
+    color: lightgoldenrodyellow;
+    min-width: 400px;
+    box-shadow: inset 2px 2px 5px 8px whitesmoke;
+    background-image: url("../public/images/paraback.jpg");
+    background-size: cover;
+}
+
+.title h1 {
+    font-size: 2rem;
+    color: aquamarine;
+    text-shadow: 2px 2px 0px white;
+    padding: 1rem;
+    margin: 2rem;
+    text-align: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dark .title {
+    background-color: rgb(151, 151, 151);
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.cards > div {
+    border-radius: 0.25rem;
+    gap: 5px;
+    margin: 5px auto;
+}
+
+.cards > div > p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.cards h3 {
+    font-weight: bolder;
+}
+
+.cards svg {
+    font-size: 3rem;
+}
+
+.manu {
+    background-color: lightgoldenrodyellow;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.manu p {
+    max-width: 300px;
+    text-align: center;
+    border: 2px solid black;
+    padding: 1rem;
+}
+
+.manu button {
+    background-color: green;
+    color: white;
+    padding: 10px 5px;
+    box-shadow: 2px 2px 4px 0px lightgreen;
+}
+
+.retail {
+    background-color: transparent;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.retail p {
+    max-width: 300px;
+    text-align: center;
+    border: 2px solid black;
+    padding: 1rem;
+}
+
+.retail button {
+    background-color: red;
+    color: white;
+    padding: 10px 5px;
+    box-shadow: 2px 2px 4px 0px lightgreen;
+}
