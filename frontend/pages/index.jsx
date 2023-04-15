@@ -73,7 +73,7 @@ export default function Home() {
                 </h1>
                 <div className="columns-3 ">
                     <div className="m-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <PersonIcon color="action" fontSize="large" />
+                        <PersonIcon color="action" className="dark:text-white" fontSize="large" />
                         <a href="#">
                             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                 Customer
@@ -98,7 +98,7 @@ export default function Home() {
                         </a>
                     </div>
                     <div className="m-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <FactoryIcon fontSize="large" />
+                        <FactoryIcon fontSize="large" className="dark:text-white" />
                         <a href="#">
                             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                 Manufacturer
@@ -123,7 +123,7 @@ export default function Home() {
                         </a>
                     </div>
                     <div className="m-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <StorefrontIcon fontSize="large" />
+                        <StorefrontIcon fontSize="large" className="dark:text-white" />
                         <a href="#">
                             <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                 Retailer
