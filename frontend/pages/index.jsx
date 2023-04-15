@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import LoginForm from "components/LoginForm";
 
 import { Inter } from "next/font/google";
 
@@ -20,69 +21,66 @@ export default function Home() {
                 <title>Chainner</title>
             </Head>
             <ToastContainer />
-            <div className={styles.container}>
-                <div className={styles.title}>
-                    <h1 className="animate-bounce">Welcome to Chainner!!!</h1>
-                    <p className="w-96 px-8 pr-4 pb-4 text-center -mt-4">
-                        Are you looking to know your daily life financial
-                        routine? aren&apos;t you curious to analyse how much you
-                        spent on average each day? Would you like to manage your
-                        finance to utilize your money in the best way? If yes,
-                        you are at the right place!!!
-                    </p>
+            <section class="h-50 bg-white dark:bg-gray-900">
+                <div class="gap-8 columns-2 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+                    <div class="mt-4 md:mt-0">
+                        <h1 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">VeriTrack</h1>
+                        <h4 class="mb-4 text-2xl tracking-tight font-extrabold text-gray-900 dark:text-white">Your one stop destination for comprehensive and reliable supply chain management</h4>
+                        <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+                            Track every step of your supply chain with VeriTrack. Ensure transparency, traceability, and trust in your supply chain processes. Streamline logistics, reduce fraud, and optimize your operations with ease.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-purple-900">
+                            Get started
+                            <svg class="ml-2 -mr-1 w-5 h-5" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </a>
+                    </div>
+                    <LoginForm></LoginForm>
                 </div>
-                <div className="flex flex-col justif-evenly items-center gap-2 bg-blue-400/50 rounded-xl p-4 dark:bg-gray-400/70">
-                    <Image
-                        src="/images/illustrate.jpg"
-                        width={200}
-                        height={200}
-                        alt="money"
-                        style={{ borderRadius: "50%" }}
-                        className=""
-                    />
-                    <Image
-                        src="/images/security.svg"
-                        width={150}
-                        height={200}
-                        alt="money"
-                    />
-                </div>
-            </div>
+            </section>
+
             <section className="p-10 mt-20 bg-purple-800 dark:bg-blue-900">
-                <h2 className="text-red-200 text-3xl text-bold text-center p-4 mb-4">
+                <h1 className="text-white text-4xl font-bold text-center p-4 mb-4">
                     Our Services
-                </h2>
-                <div className={styles.cards}>
-                    <div
-                        className="bg-red-300 dark:bg-slate-300 flex flex-col justify-evenly w-72 items-center p-4"
-                        data-aos="slide-right">
-                        <h3>Customer</h3>
-                        <p>
-                            customers can track the product ordered by them,
-                            verify their product quality
-                        </p>
+                </h1>
+                <div class="flex-col columns-3">
+                    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                         <PersonIcon fontSize="large" />
-                    </div>
-                    <div
-                        className="bg-red-300 dark:bg-slate-300 flex flex-col justify-evenly w-72 items-center p-4"
-                        data-aos="slide-right">
-                        <h3>Manufacturer</h3>
-                        <p>
-                            Manufacturer can create a supply chain and track the
-                            product sold by them. rating helps customer build
-                            trust.
+                        <a href="#">
+                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Customer</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                            Reliably track your ordered products from the shop to your doorstep.
                         </p>
-                        <FactoryIcon />
+                        <a href="#" class="inline-flex items-center text-blue-600 hover:underline">
+                            Learn more
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
+                        </a>
                     </div>
-                    <div
-                        className="bg-red-300 dark:bg-slate-300 flex flex-col justify-evenly w-72 items-center p-4"
-                        data-aos="slide-right">
-                        <h3>Retailer</h3>
-                        <p>
-                            Retailer can sign the product and send it to the
-                            next retailer/customer in chain.
+                    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <FactoryIcon fontSize="large" />
+                        <a href="#">
+                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Manufacturer</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                            Track your products from the raw materials to the finished product.
                         </p>
-                        <StorefrontIcon />
+                        <a href="#" class="inline-flex items-center text-blue-600 hover:underline">
+                            Learn more
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
+                        </a>
+                    </div>
+                    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <StorefrontIcon fontSize="large" />
+                        <a href="#">
+                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Retailer</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">
+                            Make sure that your products are delivered to the right place at the right time.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-blue-600 hover:underline">
+                            Learn more
+                            <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
+                        </a>
                     </div>
                 </div>
             </section>

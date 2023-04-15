@@ -35,7 +35,7 @@ const App = () => {
             <Head>
                 <title>Retail Login</title>
             </Head>
-            <div className="grid h-screen place-items-center">
+            <div className="flex items-center justify-center">
             <Form
                 className="m-auto w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-6 dark:bg-gray-800 dark:border-gray-700"
                 name="basic"
@@ -90,7 +90,7 @@ const App = () => {
                         Login
                     </Button>
                     <div class="text-sm mt-2 font-medium text-gray-500 dark:text-gray-300">
-                        Not registered? <a href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
+                        Not registered? <a href="../register" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
                     </div>
                 </Form.Item>
 
