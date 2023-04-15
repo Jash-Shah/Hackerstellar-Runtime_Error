@@ -57,7 +57,7 @@ function Navbar() {
                             alt="VeriTrack Logo"
                         />
                         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                            VeriTrack
+                            Veri<span style={{color:"#a142f5"}}>Track</span>
                         </span>
                     </div>
                     <div className="flex md:order-2">
