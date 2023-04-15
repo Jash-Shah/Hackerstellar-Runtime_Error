@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-const connectionStr =
-    "mongodb+srv://vaibhav:Vaibhav%40143@cluster0.nm9w35r.mongodb.net/mongoose";
-
-mongoose.set("strictQuery", true);
-const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+const connection = async () => {
+    mongoose.set("strictQuery", true);
+    mongoose
+        .connect(process.env.DB, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        .then(() => console.log("Connected!"));
 };
 
-mongoose.connect(connectionStr, options);
+export default connection;
