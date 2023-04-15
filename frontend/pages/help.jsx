@@ -6,39 +6,20 @@ import axios from "axios";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HelpQueryForm from "../components/HelpQueryForm";
 
 const App = () => {
-    const router = useRouter();
-    console.log(router.route);
-    const d = new Date();
-
-    const onFinish = async values => {
-        const d = new Date();
-        const joinedAt = d.toISOString();
-        const data = { ...values, joinedAt, orders: [{}] };
-        const response = await axios({
-            method: "POST",
-            data: data,
-            url: "http://localhost:8000/user/register",
-        });
-
-        const status = response.data.code;
-
-        if (status == 200) {
-            localStorage.setItem(
-                "token",
-                response.data.data[0]["access token"],
-            );
-            toast("Registered Successsfully!");
-            location.href = "http://localhost:3000/";
-        } else {
-            toast("username must be unique!");
-        }
-    };
-
     return (
         <>
-            <Head>
+            <HelpQueryForm />
+        </>
+    );
+};
+
+export default App;
+
+
+{/* <Head>
                 <title>Help</title>
             </Head>
             <Form
@@ -94,9 +75,4 @@ const App = () => {
                         Submit query
                     </Button>
                 </Form.Item>
-            </Form>
-        </>
-    );
-};
-
-export default App;
+            </Form> */}

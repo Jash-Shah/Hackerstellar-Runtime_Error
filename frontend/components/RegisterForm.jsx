@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form, Input } from "antd";
-import { Radio } from "antd";
+import { Button, Checkbox, Form, Input, Radio } from "antd";
+// import { Radio } from "antd";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Head from "next/head";
@@ -11,6 +11,13 @@ function RegisterForm() {
     const router = useRouter();
     console.log(router.route);
     const d = new Date();
+
+    const [type, setType] = useState("User");
+
+    const onRadioChange = (e) => {
+        console.log('Radio Checked', e.target.value);
+        setType(e.target.value);
+    };
 
     const onFinish = async values => {
         const d = new Date();
@@ -55,8 +62,8 @@ function RegisterForm() {
                             message: "Please input your email!",
                         },
                     ]}>
-                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                    type="email" placeholder="Email Address" />
+                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="email" placeholder="Email Address" />
                 </Form.Item>
                 <Form.Item
                     className="relative z-0 w-full mb-6 group"
@@ -68,9 +75,9 @@ function RegisterForm() {
                         },
                     ]}>
                     <Input
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                    type="text" placeholder="Username"
-                     />
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="Username"
+                    />
                 </Form.Item>
 
                 <Form.Item
@@ -82,14 +89,28 @@ function RegisterForm() {
                             message: "Please input your password!",
                         },
                     ]}
-                    >
+                >
                     <Input
                         type="password"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder="Password"
                     />
                 </Form.Item>
-                
+                <Form.Item
+                    className="relative z-0 w-full mb-6 group"
+                    name="address"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Enter Address!",
+                        },
+                    ]}>
+                    <Input
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="Address"
+                    />
+                </Form.Item>
+
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
                         <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -111,8 +132,17 @@ function RegisterForm() {
                         <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company (Ex. Google)</label>
                     </div>
                 </div>
-
                 <ToastContainer />
+
+                <div className="mb-2 ">
+                    <p class="block text-base font-medium text-gray-700 dark:text-gray-300">I am a: </p>
+                    <Radio.Group onChange={onRadioChange} value={type}>
+                        <Radio value={"User"}>User</Radio>
+                        <Radio value={"Retailer"}>Retailer</Radio>
+                        <Radio value={"Manufacturer"}>Manufacturer</Radio>
+                    </Radio.Group>
+                </div>
+
                 <p className="mb-2"> If you've already registered,<a href="/login" className="text-blue-700 "> Login? </a> </p>
                 <Form.Item>
                     <Button
@@ -123,7 +153,7 @@ function RegisterForm() {
                     </Button>
                 </Form.Item>
             </Form>
-            
+
 
         </>
     )
