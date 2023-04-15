@@ -11,18 +11,20 @@ function RegisterForm() {
     const router = useRouter();
     console.log(router.route);
     const d = new Date();
-
+    const [form] = Form.useForm();
     
     // add a retailers state to hold the array of retailers
     const [retailers, setRetailers] = useState([]);
 
     // add a function to handle adding a retailer to the array
-    const handleAddRetailer = (retailer) => {
-        setRetailers([...retailers, retailer]);
+    const handleAddRetailer = () => {
+        const retailer_name = form.getFieldValue('retailer');
+        if (typeof retailer_name == 'undefined' || retailer_name == ''){
+        }else {
+            setRetailers([...retailers, retailer_name]);
+        }
+        form.resetFields(['retailer']);
     };
-
-    
-
 
     // for input of images
     const normFile = (e) => {
@@ -37,7 +39,8 @@ function RegisterForm() {
     const onFinish = async values => {
         const d = new Date();
         const joinedAt = d.toISOString();
-        const data = { ...values, joinedAt, orders: [{}],retailers };
+        console.log(retailers)
+        const data = { ...values, joinedAt, orders: [{}], retailers};
         const response = await axios({
             method: "POST",
             data: data,
@@ -64,6 +67,7 @@ function RegisterForm() {
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
+                form = {form}
                 autoComplete="off">
                 <div className="flex">
                     <h5 class="m-auto mb-4 text-xl font-medium text-gray-900 dark:text-white underline-offset-4 underline">Execute for Manufacturer</h5>
@@ -147,12 +151,7 @@ function RegisterForm() {
                 </Form.Item>
 
                   {/* Button to add retailer */}
-                  <Button type="primary" onClick={() => handleAddRetailer(values.retailer)}>Add retailer</Button>
-
-
-
-
-
+                  <Button className="bg-blue-700" type="primary" onClick={handleAddRetailer}>Add retailer</Button>
 
                 <ToastContainer />
                 <Form.Item>
