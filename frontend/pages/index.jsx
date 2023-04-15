@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "components/LoginForm";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { purple } from "@mui/material/colors";
 
 import { Inter } from "next/font/google";
 import React from "react";

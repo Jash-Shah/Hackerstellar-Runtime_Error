@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import {Form, Upload, Button } from 'antd';
+import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
+
 
 const HelpQueryForm = () => {
   const [name, setName] = useState('');
@@ -14,6 +17,14 @@ const HelpQueryForm = () => {
     setEmail('');
     setQuery('');
   }
+
+  const normFile = (e) => {
+    console.log('Upload event:', e);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e?.fileList;
+  };
 
   return (
     <div className="m-auto w-full max-w-4xl p-4 bg-white-400 border rounded-lg sm:p-6 md:p-6 dark:bg-gray-800 dark:border-gray-700">
@@ -51,6 +62,19 @@ const HelpQueryForm = () => {
             onChange={(e) => setQuery(e.target.value)}
           />
         </label>
+
+        <Form.Item
+          className="my-6"
+          name="upload"
+          label="Upload"
+          valuePropName="fileList"
+          getValueFromEvent={normFile}
+        >
+          <Upload name="logo" action="/upload.do" listType="picture">
+            <Button icon={<UploadOutlined />}>Click to upload</Button>
+          </Upload>
+        </Form.Item>
+
         <button
           type="submit"
           className="mt-4 w-full py-2 px-4 text-white bg-blue-500 rounded-md hover:bg-blue-600 transition duration-300"
