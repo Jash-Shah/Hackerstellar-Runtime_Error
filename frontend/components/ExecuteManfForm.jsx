@@ -85,7 +85,9 @@ function RegisterForm() {
             toast("Username must be unique!");
         }
     };
-
+    // This is what you have to change
+    // Used the name sampleArray at various places, so you can change those 
+    // places or add the value to this array
     const sampleArray = [
         { value: '1', label: 'Retailer 1' },
         { value: '2', label: 'Retailer 2' },
