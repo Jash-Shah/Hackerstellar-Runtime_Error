@@ -16,6 +16,9 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+//flowbite
+// import { FlowBite } from "flowbite";
+
 export default function App({ Component, pageProps }) {
     const [dark, setdark] = useState(false);
     const bread = useBreadCrumb();
@@ -34,8 +37,8 @@ export default function App({ Component, pageProps }) {
 
     useEffect(() => {
         AOS.init();
-        setLoading(false);
-        setInterval(() => setLoading(false), 4000);
+        setLoading(true);
+        setInterval(() => setLoading(false), 3000);
     }, []);
 
     return (
@@ -43,9 +46,9 @@ export default function App({ Component, pageProps }) {
             <Head>
                 <meta
                     name="keywords"
-                    content="Money, finance, manage, saving, scheduler, analysis"
+                    content="blockchain, supply chain, machine learning, ai, scheduler, analysis"
                 />
-                <meta name="description" content="money manager website" />
+                <meta name="description" content=" website" />
                 <meta
                     httpEquiv="Content-Type"
                     content="text/html; charset=utf-8"
@@ -61,7 +64,7 @@ export default function App({ Component, pageProps }) {
             ) : (
                 <main className="bg-slate-200 dark:bg-blue-400">
                     <div className="dark:bg-gray-800 bg-gray-300 px-4 py-2 text-black dark:text-white  border-l-4 border-blue-800 dark:border-white  breadnav flex flex-row">
-                        <Breadcrump breadcrumbs={bread} />
+                        {/* <Breadcrump breadcrumbs={bread} /> */}
                         <div
                             className="border-1 ml-auto mr-4"
                             onClick={ModeHandler}>
@@ -75,7 +78,6 @@ export default function App({ Component, pageProps }) {
                     <Component {...pageProps} />
                 </main>
             )}
-
             <Footer />
             {/* <Component {...pageProps} /> */}
         </>
