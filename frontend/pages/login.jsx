@@ -5,7 +5,7 @@ import axios from "axios";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import LoginForm from "../components/Login"; 
+import LoginForm from "../components/LoginForm"; 
 
 const App = () => {
     const router = useRouter();
