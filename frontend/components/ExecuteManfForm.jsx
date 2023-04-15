@@ -1,26 +1,27 @@
 import React, { useState } from "react";
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input,Upload } from "antd";
-import  Link from "next/link"
+import { Button, Checkbox, Form, Input, Upload } from "antd";
+import Link from "next/link"
 import { useRouter } from "next/router";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import InputWithDropdown from "./InputWithDropdown";
 
 function RegisterForm() {
     const router = useRouter();
     console.log(router.route);
     const d = new Date();
     const [form] = Form.useForm();
-    
+
     // add a retailers state to hold the array of retailers
     const [retailers, setRetailers] = useState([]);
 
     // add a function to handle adding a retailer to the array
     const handleAddRetailer = () => {
         const retailer_name = form.getFieldValue('retailer');
-        if (typeof retailer_name == 'undefined' || retailer_name == ''){
-        }else {
+        if (typeof retailer_name == 'undefined' || retailer_name == '') {
+        } else {
             setRetailers([...retailers, retailer_name]);
         }
         form.resetFields(['retailer']);
@@ -30,17 +31,17 @@ function RegisterForm() {
     const normFile = (e) => {
         console.log('Upload event:', e);
         if (Array.isArray(e)) {
-          return e;
+            return e;
         }
         return e?.fileList;
-      };
+    };
 
 
     const onFinish = async values => {
         const d = new Date();
         const joinedAt = d.toISOString();
         console.log(retailers)
-        const data = { ...values, joinedAt, orders: [{}], retailers};
+        const data = { ...values, joinedAt, orders: [{}], retailers };
         const response = await axios({
             method: "POST",
             data: data,
@@ -60,6 +61,13 @@ function RegisterForm() {
             toast("Username must be unique!");
         }
     };
+
+    const sampleArray = [
+        { value: 'retailer1', label: 'Retailer 1' },
+        { value: 'retailer2', label: 'Retailer 2' },
+        { value: 'retailer3', label: 'Retailer 3' }
+    ];
+
     return (
         <>
             <Form
@@ -67,7 +75,7 @@ function RegisterForm() {
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
-                form = {form}
+                form={form}
                 autoComplete="off">
                 <div className="flex">
                     <h5 class="m-auto mb-4 text-xl font-medium text-gray-900 dark:text-white underline-offset-4 underline">Execute for Manufacturer</h5>
@@ -81,8 +89,8 @@ function RegisterForm() {
                             message: "Please input your email!",
                         },
                     ]}>
-                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                    type="email" placeholder="Email Address" />
+                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="email" placeholder="Email Address" />
                 </Form.Item>
                 <Form.Item
                     className="relative z-0 w-full mb-6 group"
@@ -94,13 +102,13 @@ function RegisterForm() {
                         },
                     ]}>
                     <Input
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                    type="text" placeholder="Username"
-                     />
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="Username"
+                    />
                 </Form.Item>
 
-              
-                
+
+
                 {/* <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
                         <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -114,17 +122,17 @@ function RegisterForm() {
 
                 <div className="text-center pt-8">
                     <span className="font-bold text-lg">Add Images of the product below </span>
-                    <br/>
+                    <br />
                     <span className=" font-normal">(You can add multiple images, one at a time)</span>
                 </div>
-                
+
                 <Form.Item
                     className="my-6"
                     name="upload"
                     label="Upload"
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
-                    >
+                >
                     <Upload name="logo" action="/upload.do" listType="picture">
                         <Button icon={<UploadOutlined />}>Click to upload</Button>
                     </Upload>
@@ -132,26 +140,26 @@ function RegisterForm() {
 
                 <div className="text-center pt-8">
                     <span className="font-bold text-lg">Add names of Retailers below </span>
-                    <br/>
+                    <br />
                     <span className=" font-normal">(Select add user to add multiple retailers)</span>
                 </div>
 
 
 
 
-{/* Retailer data--------------------------------------------
+                {/* Retailer data--------------------------------------------
 ----------------------------------------------------------- */}
-{/* Add retailer input */}
+                {/* Add retailer input */}
                 <Form.Item
                     label="Retailer"
                     name="retailer"
                     rules={[{ required: true, message: 'Please input retailer name' }]}
                 >
-                    <Input placeholder="Enter retailer name" />
+                    {/* <Input  /> */}
+                    <InputWithDropdown options={sampleArray}></InputWithDropdown>
                 </Form.Item>
-
-                  {/* Button to add retailer */}
-                  <Button className="bg-blue-700" type="primary" onClick={handleAddRetailer}>Add retailer</Button>
+                {/* Button to add retailer */}
+                <Button className="bg-blue-700" type="primary" onClick={handleAddRetailer}>Add retailer</Button>
 
                 <ToastContainer />
                 <Form.Item>
@@ -163,7 +171,7 @@ function RegisterForm() {
                     </Button>
                 </Form.Item>
             </Form>
-            
+
 
         </>
     )

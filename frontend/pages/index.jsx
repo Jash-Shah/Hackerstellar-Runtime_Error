@@ -8,9 +8,9 @@ import LoginForm from "components/LoginForm";
 import { purple } from '@mui/material/colors';
 
 import { Inter } from "next/font/google";
+import InputWithDropdown from "../components/InputWithDropdown";
 
 const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
     return (
         <>
