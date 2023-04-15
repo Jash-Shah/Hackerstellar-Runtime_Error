@@ -21,6 +21,8 @@ function RegisterForm() {
         setRetailers([...retailers, retailer]);
     };
 
+    
+
 
     // for input of images
     const normFile = (e) => {
@@ -130,11 +132,29 @@ function RegisterForm() {
                     <span className=" font-normal">(Select add user to add multiple retailers)</span>
                 </div>
 
+
+
+
+{/* Retailer data--------------------------------------------
+----------------------------------------------------------- */}
+{/* Add retailer input */}
+                <Form.Item
+                    label="Retailer"
+                    name="retailer"
+                    rules={[{ required: true, message: 'Please input retailer name' }]}
+                >
+                    <Input placeholder="Enter retailer name" />
+                </Form.Item>
+
+                  {/* Button to add retailer */}
+                  <Button type="primary" onClick={() => handleAddRetailer(values.retailer)}>Add retailer</Button>
+
+
+
+
+
+
                 <ToastContainer />
-
-
-
-
                 <Form.Item>
                     <Button
                         type="primary"
