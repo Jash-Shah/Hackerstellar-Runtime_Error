@@ -5,6 +5,7 @@ import axios from "axios";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginForm from "../components/Login"; 
 
 const App = () => {
     const router = useRouter();
@@ -32,7 +33,15 @@ const App = () => {
     };
     return (
         <>
-            <Head>
+            <LoginForm />
+        </>
+    );
+};
+
+export default App;
+
+
+{/* <Head>
                 <title>Login</title>
             </Head>
             <div className="grid h-screen place-items-center">
@@ -95,9 +104,4 @@ const App = () => {
                     </Form.Item>
 
                 </Form>
-            </div>
-        </>
-    );
-};
-
-export default App;
+            </div> */}
