@@ -61,9 +61,9 @@ function RegisterForm() {
 
                 {/* Adding the product details and name */}
                 <Form.Item
-                className="px-6 md:px-20 text-center "
+                className="px-6 md:px-20 text-center dark:text-white  "
                     name="productID"
-                    label="Product ID"
+                    label={<span className="dark:text-white">Product ID</span>}
                     rules={[
                     {
                         required: true,
@@ -77,7 +77,7 @@ function RegisterForm() {
                 <Form.Item
                 className="px-6 md:px-20 text-center "
                     name="productName"
-                    label="Product Name"
+                    label={<span className="dark:text-white">Product Name</span>}
                     rules={[
                     {
                         required: true,
@@ -92,20 +92,20 @@ function RegisterForm() {
         
 
                 <div className="text-center pt-8">
-                    <span className="font-bold text-lg">Add Images of the product below </span>
+                    <span className="font-bold text-lg dark:text-purple-700">Add Images of the product below </span>
                     <br/>
-                    <span className=" font-normal">(You can add multiple images, one at a time)</span>
+                    <span className=" font-normal dark:text-purple-700">(You can add multiple images, one at a time)</span>
                 </div>
                 
                 <Form.Item
-                    className="my-6 flex justify-center"
+                    className="my-6 flex justify-center dark:text-white"
                     name="upload"
-                    label="Upload"
+                    label={<span className="dark:text-white">Upload</span>}
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                     >
-                    <Upload name="logo" action="/upload.do" listType="picture">
-                        <Button icon={<UploadOutlined />}>Click to upload</Button>
+                    <Upload className="dark:text-white" name="logo" action="/upload.do" listType="picture">
+                        <Button className="dark:text-white" icon={<UploadOutlined />}>Click to upload</Button>
                     </Upload>
                 </Form.Item>
 
@@ -114,10 +114,10 @@ function RegisterForm() {
 
 
                 <ToastContainer />
-                <Form.Item>
+                <Form.Item className="flex justify-center">
                     <Button
                         type="primary"
-                        className="text-white mt-12 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 p-2.5 pb-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        className=" mt-12 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 p-2.5 pb-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         htmlType="submit">
                         Execute Product
                     </Button>
