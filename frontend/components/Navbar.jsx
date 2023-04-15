@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import Sidemenu from "./utils/Sidemenu";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
+// AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+
 
 function Navbar() {
     const [isopen, setisopen] = useState(false);
     const [log, setlog] = useState(false);
+    const [dark, setdark] = useState(false);
+
 
     const logoutHandler = () => {
         localStorage.removeItem("token");
@@ -25,6 +35,16 @@ function Navbar() {
         setisopen(prevState => !prevState);
     };
 
+    const ModeHandler = () => {
+        const html = document.querySelector("html");
+        if (dark == true) {
+            html.classList.remove("dark");
+        } else {
+            html.classList.add("dark");
+        }
+        setdark(!dark);
+    };
+
     return (
         <>
             <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 sticky w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -41,6 +61,15 @@ function Navbar() {
                         </span>
                     </div>
                     <div className="flex md:order-2">
+                        <div
+                            className="m-auto pr-4"
+                            onClick={ModeHandler}>
+                            {dark ? (
+                                <LightModeIcon className="text-yellow-400" fontSize="medium" />
+                            ) : (
+                                <DarkModeIcon fontSize="medium" />
+                            )}
+                        </div>
                         {log ? (
                             <button
                                 type="button"
@@ -67,6 +96,8 @@ function Navbar() {
                             onClick={menuOpener}>
                             <Hamburger toggled={isopen} size={20} />
                         </button>
+
+
                     </div>
                     <div
                         className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -114,7 +145,7 @@ function Navbar() {
                                     Help
                                 </Link>
                             </li>
-                            {!log && (
+                            {/* {!log && (
                                 <li>
                                     <Link
                                         href="/login"
@@ -123,7 +154,7 @@ function Navbar() {
                                         Login
                                     </Link>
                                 </li>
-                            )}
+                            )} */}
                         </ul>
                     </div>
                 </div>
