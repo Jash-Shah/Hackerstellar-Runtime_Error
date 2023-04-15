@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import InputWithDropdown from "./InputWithDropdown";
 import OrderedList from "./OrderedList";
 
-function ExecuteManu() {
+function ExecuteManf() {
     const router = useRouter();
     console.log(router.route);
     const d = new Date();
@@ -258,4 +258,4 @@ function ExecuteManu() {
     );
 }
 
-export default ExecuteManu;
+export default ExecuteManf;
