@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Form, Input } from "antd";
-import { Radio } from "antd";
+import { Button, Checkbox, Form, Input, Radio } from "antd";
+// import { Radio } from "antd";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Head from "next/head";
@@ -11,6 +11,13 @@ function RegisterForm() {
     const router = useRouter();
     console.log(router.route);
     const d = new Date();
+
+    const [type, setType] = useState("User");
+
+    const onRadioChange = (e) => {
+        console.log('Radio Checked', e.target.value);
+        setType(e.target.value);
+    };
 
     const onFinish = async values => {
         const d = new Date();
@@ -125,9 +132,17 @@ function RegisterForm() {
                         <label for="floating_company" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Company (Ex. Google)</label>
                     </div>
                 </div>
-
-
                 <ToastContainer />
+
+                <div className="mb-2 ">
+                    <p class="block text-base font-medium text-gray-700 dark:text-gray-300">I am a: </p>
+                    <Radio.Group onChange={onRadioChange} value={type}>
+                        <Radio value={"User"}>User</Radio>
+                        <Radio value={"Retailer"}>Retailer</Radio>
+                        <Radio value={"Manufacturer"}>Manufacturer</Radio>
+                    </Radio.Group>
+                </div>
+
                 <p className="mb-2"> If you've already registered,<a href="/login" className="text-blue-700 "> Login? </a> </p>
                 <Form.Item>
                     <Button
