@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import Sidemenu from "./utils/Sidemenu";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
+// AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+
 
 function Navbar() {
     const [isopen, setisopen] = useState(false);
     const [log, setlog] = useState(false);
+    const [dark, setdark] = useState(false);
+
 
     const logoutHandler = () => {
         localStorage.removeItem("token");
@@ -23,6 +33,16 @@ function Navbar() {
     const menuOpener = () => {
         console.log(isopen);
         setisopen(prevState => !prevState);
+    };
+
+    const ModeHandler = () => {
+        const html = document.querySelector("html");
+        if (dark == true) {
+            html.classList.remove("dark");
+        } else {
+            html.classList.add("dark");
+        }
+        setdark(!dark);
     };
 
     return (
@@ -113,6 +133,18 @@ function Navbar() {
                                     aria-current="page">
                                     Help
                                 </Link>
+                            </li>
+
+                            <li>
+                                <div
+                                    className="border-1 ml-auto mr-4"
+                                    onClick={ModeHandler}>
+                                    {dark ? (
+                                        <LightModeIcon fontSize="medium" />
+                                    ) : (
+                                        <DarkModeIcon fontSize="medium" />
+                                    )}
+                                </div>
                             </li>
                             {!log && (
                                 <li>
