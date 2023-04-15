@@ -61,6 +61,15 @@ function Navbar() {
                         </span>
                     </div>
                     <div className="flex md:order-2">
+                        <div
+                            className="m-auto pr-4"
+                            onClick={ModeHandler}>
+                            {dark ? (
+                                <LightModeIcon className="text-yellow-400" fontSize="medium" />
+                            ) : (
+                                <DarkModeIcon fontSize="medium" />
+                            )}
+                        </div>
                         {log ? (
                             <button
                                 type="button"
@@ -87,6 +96,8 @@ function Navbar() {
                             onClick={menuOpener}>
                             <Hamburger toggled={isopen} size={20} />
                         </button>
+
+
                     </div>
                     <div
                         className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -134,19 +145,7 @@ function Navbar() {
                                     Help
                                 </Link>
                             </li>
-
-                            <li>
-                                <div
-                                    className="border-1 ml-auto mr-4"
-                                    onClick={ModeHandler}>
-                                    {dark ? (
-                                        <LightModeIcon fontSize="medium" />
-                                    ) : (
-                                        <DarkModeIcon fontSize="medium" />
-                                    )}
-                                </div>
-                            </li>
-                            {!log && (
+                            {/* {!log && (
                                 <li>
                                     <Link
                                         href="/login"
@@ -155,7 +154,7 @@ function Navbar() {
                                         Login
                                     </Link>
                                 </li>
-                            )}
+                            )} */}
                         </ul>
                     </div>
                 </div>
