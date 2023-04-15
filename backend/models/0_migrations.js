@@ -1,7 +1,7 @@
 import { model } from "mongoose";
 import user from "./user.js";
 import query from "./query.js";
-import transaction from "./transactions.js";
+import transaction from "./transaction.js";
 
 // environment variables
 import dotenv from "dotenv";
