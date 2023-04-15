@@ -11,15 +11,7 @@ function RegisterForm() {
     console.log(router.route);
     const d = new Date();
 
-    // for input of images
-    const normFile = (e) => {
-        console.log('Upload event:', e);
-        if (Array.isArray(e)) {
-          return e;
-        }
-        return e?.fileList;
-      };
-
+    
 
     const onFinish = async values => {
         const d = new Date();
@@ -56,7 +48,7 @@ function RegisterForm() {
 
 
                 <div className="flex">
-                    <h5 class="m-auto mb-4 text-xl font-medium text-gray-900 dark:text-white underline-offset-4 underline">Execute for Retailer</h5>
+                    <h5 class="m-auto mb-4 text-xl font-medium text-gray-900 dark:text-white underline-offset-4 underline">Execute for Customer</h5>
                 </div>
 
                 {/* Adding the product details and name */}
@@ -73,45 +65,7 @@ function RegisterForm() {
                 >
                     <Input />
                 </Form.Item>
-                {/* taking form name */}
-                {/* <Form.Item
-                className="px-6 md:px-20 text-center "
-                    name="productName"
-                    label={<span className="dark:text-white">Product Name</span>}
-                    rules={[
-                    {
-                        required: true,
-                        message: 'Please input the Product Name',
-                    },
-                    ]}
-                >
-                    <Input />
-                </Form.Item> */}
-
-
-        
-
-                <div className="text-center pt-8">
-                    <span className="font-bold text-lg dark:text-purple-700">Add Images of the product below </span>
-                    <br/>
-                    <span className=" font-normal dark:text-purple-700">(You can add multiple images, one at a time)</span>
-                </div>
-                
-                <Form.Item
-                    className="my-6 flex justify-center dark:text-white"
-                    name="upload"
-                    label={<span className="dark:text-white">Upload</span>}
-                    valuePropName="fileList"
-                    getValueFromEvent={normFile}
-                    >
-                    <Upload className="dark:text-white" name="logo" action="/upload.do" listType="picture">
-                        <Button className="dark:text-white" icon={<UploadOutlined />}>Click to upload</Button>
-                    </Upload>
-                </Form.Item>
-
-
-
-
+          
 
                 <ToastContainer />
                 <Form.Item className="flex justify-center">

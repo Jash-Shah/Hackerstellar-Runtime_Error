@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import QRCode from 'react-qr-code';
 import { Button, Space } from 'antd';
+// import QRScanner from 'qr-scanner';
+
 
 
 function QrCode() {
@@ -11,7 +13,9 @@ function QrCode() {
   }
 
   return (
-    <div className='bg-white dark:bg-gray-900 items-center justify-center flex flex-col '>
+    <div>
+      {/* Qr Generator */}
+      <div className='bg-white dark:bg-gray-900 items-center justify-center flex flex-col '>
       <h1 className='dark:text-white py-4 font-bold text-xl text-center'>Generated QR for the Key is</h1>
       <QRCode className='flex px-auto text-center' value={text} />
 
@@ -21,6 +25,13 @@ function QrCode() {
         <Button className='dark:text-white'>Generate</Button>
       </div>
     </div>
+
+
+    {/* QR Reader */}
+
+    
+    </div>
+    
   );
 }
 
