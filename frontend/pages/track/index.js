@@ -20,7 +20,7 @@ const Index = () => {
           <div className="relative text-gray-700 antialiased text-sm font-semibold">
 
             {/* <!-- Vertical bar running through middle --> */}
-            <div className="hidden sm:block w-1  bg-green-200 absolute h-3/4 left-1/2 transform -translate-x-1/2"></div>
+            <div className="hidden sm:block w-1  bg-green-400 absolute h-3/4 left-1/2 transform -translate-x-1/2"></div>
 
             {/* <!-- Left section, set by justify-start and sm:pr-8 --> */}
             <div className="mt-6 sm:mt-0 sm:mb-12">
