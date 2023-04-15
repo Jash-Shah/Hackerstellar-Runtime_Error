@@ -11,8 +11,6 @@ import connection from "../utils/connection.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-connection();
-
 const transactionRouter = Router();
 
 transactionRouter.get("/", (req, res) => {
@@ -22,6 +20,8 @@ transactionRouter.get("/", (req, res) => {
 transactionRouter.post("/register", async (req, res) => {
     try {
         // Get transaction input
+        await connection();
+
         const { username, email, address, password, typeofuser } = req.body;
 
         // Validate transaction input
@@ -66,6 +66,7 @@ transactionRouter.post("/register", async (req, res) => {
 
         // return new transaction
         res.status(201).json(transaction);
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }
@@ -73,6 +74,7 @@ transactionRouter.post("/register", async (req, res) => {
 
 transactionRouter.post("/login", async (req, res) => {
     try {
+        await connection();
         const { username, password } = req.body;
 
         // Validate transaction input
@@ -106,6 +108,7 @@ transactionRouter.post("/login", async (req, res) => {
             return;
         }
         res.status(400).json({ message: "Invalid credentials!" });
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }
@@ -113,6 +116,7 @@ transactionRouter.post("/login", async (req, res) => {
 
 transactionRouter.post("/update", async (req, res) => {
     try {
+        await connection();
         const { username, password } = req.body;
 
         // Validate transaction input
@@ -139,6 +143,8 @@ transactionRouter.post("/update", async (req, res) => {
 
         transaction = await Transaction.findOne({ username });
         res.status(400).json({ message: "Invalid credentials!" });
+
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }

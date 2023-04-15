@@ -4,26 +4,27 @@ import Link from "next/link";
 import Sidemenu from "./utils/Sidemenu";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { useRouter } from "next/router";
 
 // AOS
 import AOS from "aos";
 import "aos/dist/aos.css";
-
-
 
 function Navbar() {
     const [isopen, setisopen] = useState(false);
     const [log, setlog] = useState(false);
     const [dark, setdark] = useState(false);
 
+    const router = useRouter();
 
     const logoutHandler = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("username");
         setlog(false);
+        router.reload();
     };
 
     useEffect(() => {
-        if (localStorage.getItem("token")) {
+        if (localStorage.getItem("username")) {
             setlog(true);
         } else {
             setlog(false);
@@ -61,11 +62,12 @@ function Navbar() {
                         </span>
                     </div>
                     <div className="flex md:order-2">
-                        <div
-                            className="m-auto pr-4"
-                            onClick={ModeHandler}>
+                        <div className="m-auto pr-4" onClick={ModeHandler}>
                             {dark ? (
-                                <LightModeIcon className="text-yellow-400" fontSize="medium" />
+                                <LightModeIcon
+                                    className="text-yellow-400"
+                                    fontSize="medium"
+                                />
                             ) : (
                                 <DarkModeIcon fontSize="medium" />
                             )}
@@ -96,8 +98,6 @@ function Navbar() {
                             onClick={menuOpener}>
                             <Hamburger toggled={isopen} size={20} />
                         </button>
-
-
                     </div>
                     <div
                         className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -145,7 +145,7 @@ function Navbar() {
                                     Help
                                 </Link>
                             </li>
-                            {/* {!log && (
+                            {!log && (
                                 <li>
                                     <Link
                                         href="/login"
@@ -154,7 +154,7 @@ function Navbar() {
                                         Login
                                     </Link>
                                 </li>
-                            )} */}
+                            )}
                         </ul>
                     </div>
                 </div>

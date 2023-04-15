@@ -7,7 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function ExecuteManu() {
+function ExecuteCustomer() {
     const router = useRouter();
     console.log(router.route);
     const d = new Date();
@@ -155,4 +155,4 @@ function ExecuteManu() {
     );
 }
 
-export default ExecuteManu;
+export default ExecuteCustomer;

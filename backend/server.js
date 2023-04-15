@@ -5,18 +5,16 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import axios from "axios";
 import { dirname } from "path";
+import cors from "cors";
 import { fileURLToPath } from "url";
 
 // Routes
-import userRouter from "./routes/user.js";
 import queryRouter from "./routes/query.js";
 import transactionRouter from "./routes/transaction.js";
+import userRouter from "./routes/user.js";
 
 // dirname
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-import connection from "./utils/connection.js";
-// connection();
 
 // dotenv
 dotenv.config();
@@ -45,6 +43,7 @@ app.use(
     }),
 );
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

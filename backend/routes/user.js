@@ -11,8 +11,6 @@ import connection from "../utils/connection.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-connection();
-
 const userRouter = Router();
 
 userRouter.get("/", (req, res) => {
@@ -22,6 +20,7 @@ userRouter.get("/", (req, res) => {
 userRouter.post("/register", async (req, res) => {
     try {
         // Get user input
+        await connection();
         const { username, email, address, password, typeofuser } = req.body;
 
         // Validate user input
@@ -31,8 +30,6 @@ userRouter.post("/register", async (req, res) => {
                 .json({ message: "All information is required!" });
         }
 
-        // check if user already exist
-        // Validate if user exist in our database
         const oldUser = await User.findOne({ username });
 
         if (oldUser) {
@@ -66,6 +63,7 @@ userRouter.post("/register", async (req, res) => {
 
         // return new user
         res.status(201).json(user);
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }
@@ -73,6 +71,8 @@ userRouter.post("/register", async (req, res) => {
 
 userRouter.post("/login", async (req, res) => {
     try {
+        await connection();
+
         const { username, password } = req.body;
 
         // Validate user input
@@ -103,6 +103,7 @@ userRouter.post("/login", async (req, res) => {
             return;
         }
         res.status(400).json({ message: "Invalid credentials!" });
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }
@@ -110,6 +111,8 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.post("/update", async (req, res) => {
     try {
+        await connection();
+
         const { username, password } = req.body;
 
         // Validate user input
@@ -133,6 +136,7 @@ userRouter.post("/update", async (req, res) => {
 
         user = await User.findOne({ username });
         res.status(400).json({ message: "Invalid credentials!" });
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }

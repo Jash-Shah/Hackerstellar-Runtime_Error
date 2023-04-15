@@ -9,29 +9,22 @@ import "react-toastify/dist/ReactToastify.css";
 
 function LoginForm() {
     const router = useRouter();
-    const [type, setType] = useState("User");
 
-    const onRadioChange = (e) => {
-        console.log('Radio Checked', e.target.value);
-        setType(e.target.value);
-    };
     const onFinish = async values => {
-        console.log(values);
         const response = await axios({
             method: "POST",
             data: values,
-            url: "http://localhost:8000/user/login",
+            url: `${process.env.API_URL}/user/login/`,
         });
 
-        const status = response.data.code;
+        const user = response.data;
+
+        const status = response.status;
 
         if (status == 200) {
-            localStorage.setItem(
-                "token",
-                response.data.data[0]["access token"],
-            );
+            localStorage.setItem("username", user.username);
             toast("Logged Successsfully!");
-            location.href = "http://localhost:3000/";
+            location.href = process.env.WEB_URL + "/";
         } else {
             toast("Invalid credentials!");
         }
@@ -46,7 +39,9 @@ function LoginForm() {
                 onFinish={onFinish}
                 autoComplete="off">
                 <div className="flex">
-                    <h5 class="m-auto mb-4 text-xl font-medium text-gray-900 dark:text-white">Login to VeriTrack</h5>
+                    <h5 className="m-auto mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        Login to VeriTrack
+                    </h5>
                 </div>
                 <div>
                     <Form.Item
@@ -77,23 +72,23 @@ function LoginForm() {
                     </Form.Item>
                 </div>
 
-                <div className="mb-2 ">
-                    <p class="block text-base font-medium text-gray-700 dark:text-gray-300">I am a: </p>
-                    <Radio.Group  onChange={onRadioChange} value={type}>
-                        <Radio className="dark:text-gray-300" value={"User"}>User</Radio>
-                        <Radio className="dark:text-gray-300" value={"Retailer"}>Retailer</Radio>
-                        <Radio className="dark:text-gray-300" value={"Manufacturer"}>Manufacturer</Radio>
-                    </Radio.Group>
-                </div>
                 <Form.Item>
-                    <div class="flex items-start mb-4">
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
+                    <div className="flex items-start mb-4">
+                        <div className="flex items-start">
+                            <div className="flex items-center h-5">
+                                <input
+                                    id="remember"
+                                    type="checkbox"
+                                    value=""
+                                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                                />
                             </div>
-                            <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+                            <label
+                                htmlFor="remember"
+                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Remember me
+                            </label>
                         </div>
-                        <a href="#" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
                     </div>
                     <Button
                         type="primary"
@@ -101,14 +96,18 @@ function LoginForm() {
                         htmlType="submit">
                         Login
                     </Button>
-                    <div class="text-sm mt-2 font-medium text-gray-500 dark:text-gray-300">
-                        Not registered? <a href="/register" class="text-blue-700 hover:underline dark:text-blue-500">Create an account</a>
+                    <div className="text-sm mt-2 font-medium text-gray-500 dark:text-gray-300">
+                        Not registered?{" "}
+                        <a
+                            href="/register"
+                            className="text-blue-700 hover:underline dark:text-blue-500">
+                            Create an account
+                        </a>
                     </div>
                 </Form.Item>
             </Form>
         </>
     );
-};
+}
 
 export default LoginForm;
-

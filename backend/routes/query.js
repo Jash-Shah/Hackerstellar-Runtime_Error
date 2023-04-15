@@ -12,8 +12,6 @@ import connection from "../utils/connection.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-connection();
-
 const queryRouter = Router();
 
 // multer storage
@@ -35,6 +33,7 @@ queryRouter.get("/", (req, res) => {
 
 queryRouter.post("/", upload.single("image"), async (req, res) => {
     try {
+        await connection();
         const { username, title, description } = req.body;
 
         // Validate query input
@@ -48,11 +47,9 @@ queryRouter.post("/", upload.single("image"), async (req, res) => {
         const oldUser = await Query.findOne({ username, title });
 
         if (oldUser) {
-            return res
-                .status(403)
-                .json({
-                    message: "You already have queried, wait for response!",
-                });
+            return res.status(403).json({
+                message: "You already have queried, wait for response!",
+            });
         }
 
         const images = `${req.body.username}-${req.body.title}`;
@@ -64,6 +61,7 @@ queryRouter.post("/", upload.single("image"), async (req, res) => {
             images,
         });
         res.status(201).json({ message: "Query sent successfully!" });
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }
@@ -71,6 +69,7 @@ queryRouter.post("/", upload.single("image"), async (req, res) => {
 
 queryRouter.post("/login", async (req, res) => {
     try {
+        await connection();
         const { username, password } = req.body;
 
         // Validate query input
@@ -101,36 +100,7 @@ queryRouter.post("/login", async (req, res) => {
             return;
         }
         res.status(400).json({ message: "Invalid credentials!" });
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-queryRouter.post("/update", async (req, res) => {
-    try {
-        const { username, password } = req.body;
-
-        // Validate query input
-        if (!(username && password)) {
-            res.status(400).json({
-                message: "Update informations are required",
-            });
-        }
-
-        // Validate if query exist in our database
-        let query = await Query.findOne({ username });
-
-        if (query && (await bcrypt.compare(password, query.password))) {
-            // Create token
-            await Query.findOneAndUpdate({ username }, req.body);
-
-            // query
-            res.status(200).json(query);
-            return;
-        }
-
-        query = await Query.findOne({ username });
-        res.status(400).json({ message: "Invalid credentials!" });
+        mongoose.connection.close();
     } catch (err) {
         console.log(err);
     }
