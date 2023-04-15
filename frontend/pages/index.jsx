@@ -5,6 +5,7 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "components/LoginForm";
+import { purple } from '@mui/material/colors';
 
 import { Inter } from "next/font/google";
 
@@ -40,7 +41,7 @@ export default function Home() {
                 </h1>
                 <div class="columns-3 ">
                     <div class="m-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <PersonIcon color="action" fontSize="large"/>
+                        <PersonIcon sx = {{ color: purple[800]}} fontSize="large"/>
                         <a href="#">
                             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Customer</h5>
                         </a>
@@ -53,7 +54,7 @@ export default function Home() {
                         </a>
                     </div>
                     <div class="m-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <FactoryIcon fontSize="large" />
+                        <FactoryIcon sx = {{ color: purple[800]}} fontSize="large" />
                         <a href="#">
                             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Manufacturer</h5>
                         </a>
@@ -66,7 +67,7 @@ export default function Home() {
                         </a>
                     </div>
                     <div class="m-auto max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <StorefrontIcon fontSize="large" />
+                        <StorefrontIcon sx = {{ color: purple[800]}} fontSize="large" />
                         <a href="#">
                             <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Retailer</h5>
                         </a>

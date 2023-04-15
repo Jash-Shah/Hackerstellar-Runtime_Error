@@ -5,6 +5,9 @@
 import { socials } from './utils/constant';
 import styles from '../styles';
 import Link from 'next/link';
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 // const handleClick(){
 
@@ -22,8 +25,8 @@ const Footer = () => (
 
     
            <Link href="/">
-            <h1 className="navbarFont ml-1 text-2xl  font-bold" style={{ color: 'white', fontFamily: 'calvier' }}>
-                Veri<span style={{ color: '#26A699', fontFamily: 'calvier' }}>Track</span>
+            <h1 className="navbarFont ml-1 text-2xl  font-bold" style={{ color: 'white', fontFamily: 'sans-serif' }}>
+                Veri<span style={{ color: '#a142f5', fontFamily: 'sans-serif' }}>Track</span>
               </h1>
       
           </Link> 
