@@ -10,10 +10,9 @@ import { useRouter } from "next/router";
 import { purple } from "@mui/material/colors";
 
 import { Inter } from "next/font/google";
-import React from "react";
+import InputWithDropdown from "../components/InputWithDropdown";
 
 const inter = Inter({ subsets: ["latin"] });
-
 export default function Home() {
     const [log, setlog] = useState(false);
 

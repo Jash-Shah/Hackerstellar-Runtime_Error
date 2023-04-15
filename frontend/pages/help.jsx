@@ -10,9 +10,9 @@ import HelpQueryForm from "../components/HelpQueryForm";
 
 const App = () => {
     return (
-        <>
+        <div className="bg-white dark:bg-gray-900">
             <HelpQueryForm />
-        </>
+        </div>
     );
 };
 

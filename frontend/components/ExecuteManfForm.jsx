@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import InputWithDropdown from "./InputWithDropdown";
+import OrderedList from "./OrderedList";
 
 function ExecuteManu() {
     const router = useRouter();
@@ -13,13 +15,35 @@ function ExecuteManu() {
     const d = new Date();
     const [form] = Form.useForm();
 
+    const [searchValue, setSearchValue] = useState('');
+    const [suggestedOptions, setSuggestedOptions] = useState([]);
     // add a retailers state to hold the array of retailers
     const [retailers, setRetailers] = useState([]);
+    const [retailFormValue, setRetailFormValue] = useState("");
+
+    const handleInputChange = (e) => {
+        const inputValue = e.target.value;
+        setSearchValue(inputValue);
+        setRetailFormValue(inputValue);
+        // Filter options based on input value
+        const filteredOptions = sampleArray.filter((option) =>
+            option.label.toLowerCase().includes(inputValue.toLowerCase())
+        );
+        setSuggestedOptions(filteredOptions);
+    };
+
+    const handleOptionSelect = (selectedValue) => {
+        setSearchValue(selectedValue);
+        setRetailFormValue(selectedValue);
+        setSuggestedOptions([]);
+    };
 
     // add a function to handle adding a retailer to the array
     const handleAddRetailer = () => {
-        const retailer_name = form.getFieldValue("retailer");
-        if (typeof retailer_name == "undefined" || retailer_name == "") {
+        const retailer_name = retailFormValue;
+        // const inputValue = inputRef.current.state.value;
+        if (typeof retailer_name == 'undefined' || retailer_name == '') {
+            console.log("Getting undefined")
         } else {
             setRetailers([...retailers, retailer_name]);
         }
@@ -59,6 +83,16 @@ function ExecuteManu() {
             toast("Username must be unique!");
         }
     };
+    // This is what you have to change
+    // Used the name sampleArray at various places, so you can change those 
+    // places or add the value to this array
+    const sampleArray = [
+        { value: '1', label: 'Retailer 1' },
+        { value: '2', label: 'Retailer 2' },
+        { value: '3', label: 'Retailer 3' }
+    ];
+
+    const items = ['Item 1', 'Item 2', 'Item 3'];
     return (
         <>
             <Form
@@ -66,6 +100,7 @@ function ExecuteManu() {
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
+                form={form}
                 form={form}
                 autoComplete="off">
                 <div className="flex">
@@ -75,32 +110,54 @@ function ExecuteManu() {
                 </div>
                 <Form.Item
                     className="relative z-0 w-full mb-6 group"
-                    name="email"
+                    name="customer"
                     rules={[
                         {
                             required: true,
                             message: "Please input your email!",
                         },
                     ]}>
-                    <Input
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="email"
-                        placeholder="Email Address"
-                    />
+                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="Customer Address" />
                 </Form.Item>
                 <Form.Item
                     className="relative z-0 w-full mb-6 group"
-                    name="username"
+                    name="price"
                     rules={[
                         {
                             required: true,
-                            message: "Enter unique username!",
+                            message: "Please enter the price!",
+                        },
+                    ]}>
+                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="10000 INR" />
+                </Form.Item>
+                <Form.Item
+                    className="relative z-0 w-full mb-6 group"
+                    name="product_name"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Enter the product name!",
                         },
                     ]}>
                     <Input
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="text"
-                        placeholder="Username"
+                        type="text" placeholder="Product Name"
+                    />
+                </Form.Item>
+                <Form.Item
+                    className="relative z-0 w-full mb-6 group"
+                    name="product_description"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Enter the product description!",
+                        },
+                    ]}>
+                    <Input
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="Product Description"
                     />
                 </Form.Item>
 
@@ -116,13 +173,9 @@ function ExecuteManu() {
                 </div> */}
 
                 <div className="text-center pt-8">
-                    <span className="font-bold text-lg">
-                        Add Images of the product below{" "}
-                    </span>
+                    <span className="font-bold text-lg">Add Images of the product below </span>
                     <br />
-                    <span className=" font-normal">
-                        (You can add multiple images, one at a time)
-                    </span>
+                    <span className=" font-normal">(You can add multiple images, one at a time)</span>
                 </div>
 
                 <Form.Item
@@ -130,6 +183,8 @@ function ExecuteManu() {
                     name="upload"
                     label="Upload"
                     valuePropName="fileList"
+                    getValueFromEvent={normFile}
+                >
                     getValueFromEvent={normFile}>
                     <Upload name="logo" action="/upload.do" listType="picture">
                         <Button icon={<UploadOutlined />}>
@@ -146,31 +201,48 @@ function ExecuteManu() {
                     <span className=" font-normal">
                         (Select add user to add multiple retailers)
                     </span>
+                    <span className="font-bold text-lg">Add names of Retailers below </span>
+                    <br />
+                    <span className="font-normal">(Select add user to add multiple retailers)</span>
                 </div>
+
+
+
 
                 {/* Retailer data--------------------------------------------
 ----------------------------------------------------------- */}
                 {/* Add retailer input */}
-                <Form.Item
-                    label="Retailer"
-                    name="retailer"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input retailer name",
-                        },
-                    ]}>
-                    <Input placeholder="Enter retailer name" />
-                </Form.Item>
-
-                {/* Button to add retailer */}
-                <Button
-                    className="bg-blue-700"
-                    type="primary"
-                    onClick={handleAddRetailer}>
-                    Add retailer
-                </Button>
-
+                <div className="">
+                    <Form.Item
+                        className=""
+                        label="Retailer"
+                        name="retailer"
+                        rules={[{ required: true, message: 'Please input retailer name' }]}
+                    >
+                        <Input
+                            type="text"
+                            className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            value={searchValue}
+                            onChange={handleInputChange}
+                        />
+                        {sampleArray.length > 0 && (
+                            <ul className="absolute z-10 left-0 right-0 mt-2 p-2 bg-white border border-gray-300 rounded-md">
+                                {sampleArray.map((option, index) => (
+                                    <li
+                                        key={index}
+                                        className="cursor-pointer hover:bg-gray-100"
+                                        onClick={() => handleOptionSelect(option.label)}
+                                    >
+                                        {option.label}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </Form.Item>
+                    {/* Button to add retailer */}
+                    <Button className="inline-flex bg-blue-700" type="primary" onClick={handleAddRetailer}>Add retailer</Button>
+                </div>
+                <OrderedList items={items}></OrderedList>
                 <ToastContainer />
 
                 <Form.Item>
