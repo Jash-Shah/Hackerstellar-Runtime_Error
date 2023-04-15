@@ -2,7 +2,7 @@
 
 /* 
     author: Vaibhav Patel,
-    date: 12/3/2023
+    date: 15/4/2023
 */
 
 pragma solidity >=0.5.0 <0.9.0;
@@ -63,6 +63,8 @@ contract SupplyChain {
 
     // below function will be used to initiate a chain
     function manufactureProduct(
+        address customer,
+        uint64 price,
         string memory _productName,
         string memory _productDescription,
         string[] memory _productImages,
@@ -73,8 +75,8 @@ contract SupplyChain {
         products[productCount] = Product(
             productCount,
             msg.sender,
-            address(0),
-            0,
+            customer,
+            price,
             _productName,
             _productDescription,
             _productImages,
@@ -107,14 +109,14 @@ contract SupplyChain {
     function getProducts_manu(address _manu)
         public
         view
-        returns (uint256[1000] memory, uint256)
+        returns (uint256[100] memory, uint256)
     {
         uint256 size = productCount;
 
-        uint256[1000] memory ps;
+        uint256[100] memory ps;
         uint256 index = 0;
 
-        for (uint256 i = 0; i < size; i++) {
+        for (uint256 i = 10000001; i <= size; i++) {
             if (products[i].manufacturer == _manu) {
                 ps[index] = i;
                 index++;
@@ -162,8 +164,7 @@ contract SupplyChain {
             }
         }
 
-        address lastaddress = chains[productId][lastIndex]
-            ._addressOfChainMember;
+        address lastaddress = chains[productId][lastIndex]._addressOfChainMember;
 
         if (address(msg.sender) == lastaddress) {
             chains[productId][lastIndex].signed = true;
@@ -178,15 +179,15 @@ contract SupplyChain {
     function getProducts_retail()
         public
         view
-        returns (uint256[1000] memory, uint256)
+        returns (uint256[100] memory, uint256)
     {
         uint256 size = productCount;
 
         // using a iterative approach
-        uint256[1000] memory ps;
+        uint256[100] memory ps;
         uint256 index = 0;
 
-        for (uint256 i = 0; i < size; i++) {
+        for (uint256 i = 10000001; i <= size; i++) {
             uint256 chainsize = chains[i].length;
             for (uint256 j = 0; j < chainsize; j++) {
                 address a = chains[i][j]._addressOfChainMember;
@@ -216,8 +217,7 @@ contract SupplyChain {
             }
         }
 
-        address lastaddress = chains[productId][lastIndex]
-            ._addressOfChainMember;
+        address lastaddress = chains[productId][lastIndex]._addressOfChainMember;
 
         if (address(msg.sender) == lastaddress) {
             chains[productId][lastIndex].signed = true;
@@ -242,14 +242,14 @@ contract SupplyChain {
     function getProducts_customer()
         public
         view
-        returns (uint256[1000] memory, uint256)
+        returns (uint256[100] memory, uint256)
     {
         uint256 size = productCount;
 
-        uint256[1000] memory ps;
+        uint256[100] memory ps;
         uint256 index = 0;
 
-        for (uint256 i = 0; i < size; i++) {
+        for (uint256 i = 10000001; i <= size; i++) {
             if (products[i].customer == address(msg.sender)) {
                 ps[index] = i;
                 index++;
@@ -281,3 +281,5 @@ contract SupplyChain {
         );
     }
 }
+
+//! Address: 0xD8D3cB0d58eD075701f9EF68636952cD9053eaad

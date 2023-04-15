@@ -42,9 +42,13 @@ function App() {
                     setAccount(account);
                     setState({ provider, signer, contract });
 
-                    let x = await contract.productCount();
-                    x = x.toNumber();
-                    setcount(x);
+                    //! productChain
+                    // let x = await contract.productCount();
+                    // x = x.toNumber();
+                    // setcount(x);
+
+                    //! manufactureProduct
+                    // let x = await contract.manufactureProduct();
                 } else {
                     alert("Please install metamask!!");
                 }

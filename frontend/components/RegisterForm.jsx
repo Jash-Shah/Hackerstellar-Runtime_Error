@@ -6,6 +6,7 @@ import axios from "axios";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import connectWallet from "../connectWallet.js";
 
 function RegisterForm() {
     const router = useRouter();
@@ -30,6 +31,10 @@ function RegisterForm() {
         const status = response.status;
 
         if (status == 201) {
+            // connecting to wallet
+            const object = await connectWallet();
+            console.log(object);
+
             localStorage.setItem("username", user.username);
             toast("Registered Successsfully!");
             location.href = process.env.WEB_URL + "/";

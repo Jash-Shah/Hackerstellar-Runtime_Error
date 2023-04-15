@@ -7,6 +7,7 @@ async function main() {
     await contract.deployed();
     console.log("Address of contract:", contract.address);
 }
+
 main().catch(error => {
     console.error(error);
     process.exitCode = 1;
