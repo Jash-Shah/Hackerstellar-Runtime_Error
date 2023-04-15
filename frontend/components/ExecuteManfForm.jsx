@@ -101,7 +101,6 @@ function ExecuteManf() {
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
                 form={form}
-                form={form}
                 autoComplete="off">
                 <div className="flex">
                     <h5 className="m-auto mb-4 text-xl font-medium text-gray-900 dark:text-white underline-offset-4 underline">
@@ -185,7 +184,7 @@ function ExecuteManf() {
                     valuePropName="fileList"
                     getValueFromEvent={normFile}
                 >
-                    getValueFromEvent={normFile}>
+
                     <Upload name="logo" action="/upload.do" listType="picture">
                         <Button icon={<UploadOutlined />}>
                             Click to upload
