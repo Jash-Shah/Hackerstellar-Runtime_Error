@@ -35,7 +35,6 @@ const user = new Schema(
         },
         token: {
             type: String,
-            required: true,
             alias: "to",
         },
     },
