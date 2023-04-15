@@ -2,17 +2,29 @@ import { Schema } from "mongoose";
 
 const query = new Schema(
     {
-        userid: {
-            type: Schema.Types.ObjectId,
+        username: {
+            type: String,
             ref: "user",
             required: true,
             alias: "u",
         },
-        text: {
+        title: {
+            type: String,
+            required: true,
+            maxLength: 100,
+            alias: "t",
+        },
+        description: {
             type: String,
             required: true,
             maxLength: 200,
-            alias: "t",
+            alias: "d",
+        },
+        images: {
+            type: String,
+            required: false,
+            maxLength: 100,
+            alias: "i",
         },
     },
     { timestamps: true },

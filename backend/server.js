@@ -9,6 +9,8 @@ import { fileURLToPath } from "url";
 
 // Routes
 import userRouter from "./routes/user.js";
+import queryRouter from "./routes/query.js";
+import transactionRouter from "./routes/transaction.js";
 
 // dirname
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -25,6 +27,8 @@ var app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+// for query route applying public
 
 // middlewares
 app.use(
@@ -48,6 +52,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // route definition
 app.use("/user", userRouter);
+app.use("/query", queryRouter);
+app.use("/transaction", transactionRouter);
 
 // basic setup check
 app.get("/", async (req, res) => {
