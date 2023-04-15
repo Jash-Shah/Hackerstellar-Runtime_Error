@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
     useEffect(() => {
         AOS.init();
         setLoading(true);
-        setInterval(() => setLoading(false), 30);
+        setInterval(() => setLoading(false), 3000);
     }, []);
 
     return (
