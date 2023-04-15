@@ -21,6 +21,7 @@
     "eslint-config-next": "13.2.4",
     "ethers": "^5.7.2",
     "flowbite": "^1.6.3",
+    "framer-motion": "^10.12.2",
     "hamburger-react": "^2.5.0",
     "next": "13.2.4",
     "react": "18.2.0",
