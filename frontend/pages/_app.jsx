@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }) {
 
     useEffect(() => {
         AOS.init();
-        setLoading(true);
+        setLoading(false);
         setInterval(() => setLoading(false), 4000);
     }, []);
 
@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }) {
                     name="viewport"
                     content="width=device-width, initial-scale=1.0"
                 />
-            </Head>
+             </Head>
             <Navbar />
             {loading ? (
                 <LoadingScreen />
@@ -77,6 +77,7 @@ export default function App({ Component, pageProps }) {
             )}
 
             <Footer />
+            {/* <Component {...pageProps} /> */}
         </>
     );
 }

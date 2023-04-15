@@ -14,21 +14,21 @@
 @tailwind utilities;
 
 /** background */
-main {
+/* main {
     min-height: 70vh;
     background-position: center top;
     background-size: contain;
     animation: 10s linear 1s infinite forwards bganimate;
     background-repeat: no-repeat;
     background-position: fixed;
-}
+} */
 
-body {
+/* body {
     background-color: rgb(168, 168, 168);
     background-size: contain;
     background-position: fixed;
     overflow-x: hidden;
-}
+} */
 
 /** scrollbar */
 :is(body, .aside)::-webkit-scrollbar {
