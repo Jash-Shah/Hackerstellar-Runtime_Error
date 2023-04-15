@@ -55,8 +55,8 @@ function RegisterForm() {
                             message: "Please input your email!",
                         },
                     ]}>
-                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                    type="email" placeholder="Email Address" />
+                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="email" placeholder="Email Address" />
                 </Form.Item>
                 <Form.Item
                     className="relative z-0 w-full mb-6 group"
@@ -68,9 +68,9 @@ function RegisterForm() {
                         },
                     ]}>
                     <Input
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-                    type="text" placeholder="Username"
-                     />
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="Username"
+                    />
                 </Form.Item>
 
                 <Form.Item
@@ -82,14 +82,28 @@ function RegisterForm() {
                             message: "Please input your password!",
                         },
                     ]}
-                    >
+                >
                     <Input
                         type="password"
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder="Password"
                     />
                 </Form.Item>
-                
+                <Form.Item
+                    className="relative z-0 w-full mb-6 group"
+                    name="address"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Enter Address!",
+                        },
+                    ]}>
+                    <Input
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text" placeholder="Address"
+                    />
+                </Form.Item>
+
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
                         <input type="text" name="floating_first_name" id="floating_first_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -112,6 +126,7 @@ function RegisterForm() {
                     </div>
                 </div>
 
+
                 <ToastContainer />
                 <p className="mb-2"> If you've already registered,<a href="/login" className="text-blue-700 "> Login? </a> </p>
                 <Form.Item>
@@ -123,7 +138,7 @@ function RegisterForm() {
                     </Button>
                 </Form.Item>
             </Form>
-            
+
 
         </>
     )
