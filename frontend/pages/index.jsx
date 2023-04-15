@@ -84,54 +84,39 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className={styles.manu}>
-                <h2 className="text-right max-w-fit bg-slate-400 text-black dark:bg-black dark:text-white p-4 w-max-fit text-3xl rounded-lg my-5">
-                    Join Us As Manufacturer
-                </h2>
-                <div className="flex flex-row flex-wrap justify-evenly items-center">
-                    <div className="py-5">
-                        <Image
-                            src="/images/plan.svg"
-                            width={300}
-                            height={300}
-                            alt="money"
-                        />
-                    </div>
-                    <div>
-                        <p>
-                            Would you like to gain some trust of customers?
-                            create a chain for the product you are selling and
-                            build a brand.
-                        </p>
-                        <Link href="/retail/register">
-                            <button>Get started as Manufacturer</button>
-                        </Link>
+
+            <section class="bg-white dark:bg-gray-900">
+                <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+                    <div class="max-w-screen-md">
+                        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Join as a Manufacturer</h2>
+                        <p class="mb-8 font-light text-gray-500 sm:text-xl dark:text-gray-400">Flowbite helps you connect with friends, family and communities of people who share your interests. Connecting with your friends and family as well as discovering new ones is easy with features like Groups, Watch and Marketplace.</p>
+                        <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+                            <a href="#" class="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
+                                Get started
+                            </a>
+                            <a href="#" class="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                                <svg class="mr-2 -ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
+                                View more
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
-            <section className={styles.retail}>
-                <h2 className="text-right max-w-fit bg-slate-400 text-black dark:bg-black dark:text-white p-4 w-max-fit text-3xl rounded-lg my-5">
-                    Join us as Retailer
-                </h2>
-                <div className="flex flex-wrap justify-evenly items-center py-5">
-                    <Image
-                        src="/images/delivery.svg"
-                        width={300}
-                        height={300}
-                        alt="money"
-                    />
-                    <div>
-                        <p>
-                            Authenticate the product you have got with our
-                            website and send it ahead in the chain. it requires
-                            less time and provides more security!!!
-                        </p>
-                        <Link href="/manufact/register">
-                            <button>Get started as Retailer</button>
-                        </Link>
+
+            <div class="flex flex-col" >
+                <div class="w-6/12 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="/images/delivery.svg" alt="" />
+                    <div class="flex flex-col justify-between p-4 leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Join as a Retailer</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <a href="#" class="inline-flex items-center text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-purple-900">
+                            Get started as a Retailer
+                            <svg class="ml-2 -mr-1 w-5 h-5" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
+
         </>
     );
 }
