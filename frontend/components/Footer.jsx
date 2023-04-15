@@ -1,24 +1,19 @@
 
 // 'use client';
 
-import { motion } from 'framer-motion';
+
 import { socials } from './utils/constant';
 import styles from '../styles';
-import { footerVariants } from './utils/motion';
 import Link from 'next/link';
 
 // const handleClick(){
 
 // }
 const Footer = () => (
-  <motion.footer
-    variants={footerVariants}
-    initial="hidden"
-    whileInView="show"
-    className={`${styles.xPaddings} bg-black relative`}
-  >
-    <div className="footer-gradient " />
-    <div className={`${styles.innerWidth} mx-auto flex flex-col gap-8`}>
+  
+  <div className='bg-black'>
+<div className="footer-gradient " />
+    <div className={`${styles.innerWidth} mx-auto flex flex-col gap-4`}>
 
       <div className="flex flex-col">
         <div className="mb-[50px] h-[2px] bg-black opacity-10" />
@@ -27,7 +22,7 @@ const Footer = () => (
 
     
            <Link href="/">
-            <h1 className="navbarFont ml-3 text-2xl  font-bold" style={{ color: 'white', fontFamily: 'calvier' }}>
+            <h1 className="navbarFont ml-1 text-2xl  font-bold" style={{ color: 'white', fontFamily: 'calvier' }}>
                 Veri<span style={{ color: '#26A699', fontFamily: 'calvier' }}>Track</span>
               </h1>
       
@@ -40,7 +35,7 @@ const Footer = () => (
           </span>
           <br />
       
-          <div className="flex gap-4 ">
+          <div className="flex gap-3 ">
             {socials.map((social) => (
               <a target="__blank" key={social.key} href={social.socialurl}>
                 <img
@@ -54,7 +49,8 @@ const Footer = () => (
         </div>
       </div>
     </div>
-  </motion.footer>
+  </div>
+    
 );
 
 export default Footer;
