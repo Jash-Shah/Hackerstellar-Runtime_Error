@@ -1,14 +1,20 @@
 import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Radio } from "antd";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function LoginForm () {
+function LoginForm() {
     const router = useRouter();
+    const [type, setType] = useState("User");
 
+    const onRadioChange = (e) => {
+        console.log('Radio Checked', e.target.value);
+        setType(e.target.value);
+    };
     const onFinish = async values => {
         console.log(values);
         const response = await axios({
@@ -70,11 +76,20 @@ function LoginForm () {
                         <Input.Password placeholder="********" />
                     </Form.Item>
                 </div>
+
+                <div className="mb-2 ">
+                    <p class="block text-base font-medium text-gray-700 dark:text-gray-300">I am a: </p>
+                    <Radio.Group onChange={onRadioChange} value={type}>
+                        <Radio value={"User"}>User</Radio>
+                        <Radio value={"Retailer"}>Retailer</Radio>
+                        <Radio value={"Manufacturer"}>Manufacturer</Radio>
+                    </Radio.Group>
+                </div>
                 <Form.Item>
                     <div class="flex items-start mb-4">
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
-                                <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"/>
+                                <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                             </div>
                             <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                         </div>
