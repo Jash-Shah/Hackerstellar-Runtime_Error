@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { InboxOutlined, UploadOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input, Upload } from "antd";
 import Link from "next/link";
@@ -8,44 +8,65 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputWithDropdown from "./InputWithDropdown";
 import OrderedList from "./OrderedList";
+import connectWallet from "../connectWallet";
 
 function ExecuteManf() {
     const router = useRouter();
     console.log(router.route);
-    const d = new Date();
     const [form] = Form.useForm();
 
-    const [searchValue, setSearchValue] = useState('');
-    const [suggestedOptions, setSuggestedOptions] = useState([]);
+    const [focused, setFocused] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+    const [suggestedOptions, setSuggestedOptions] = useState({ data: [] });
     // add a retailers state to hold the array of retailers
-    const [retailers, setRetailers] = useState([]);
+    const [retailers, setRetailers] = useState({ data: [] });
     const [retailFormValue, setRetailFormValue] = useState("");
+    const [users, setusers] = useState({ data: [] });
 
-    const handleInputChange = (e) => {
+    const handleInputChange = e => {
         const inputValue = e.target.value;
         setSearchValue(inputValue);
         setRetailFormValue(inputValue);
         // Filter options based on input value
-        const filteredOptions = sampleArray.filter((option) =>
-            option.label.toLowerCase().includes(inputValue.toLowerCase())
+        const filteredOptions = users.data.filter(option =>
+            option.username.toLowerCase().includes(inputValue.toLowerCase()),
         );
         setSuggestedOptions(filteredOptions);
     };
 
-    const handleOptionSelect = (selectedValue) => {
-        setSearchValue(selectedValue);
+    const handleOptionSelect = selectedValue => {
+        setSearchValue("");
         setRetailFormValue(selectedValue);
         setSuggestedOptions([]);
+
+        if (retailers.data.includes(selectedValue)) {
+            toast("Retailer already added!");
+            return;
+        }
+        
+        setRetailers({ data: [...retailers.data, selectedValue] });
     };
 
     // add a function to handle adding a retailer to the array
     const handleAddRetailer = () => {
         const retailer_name = retailFormValue;
+        console.log("Retailer Name: ", retailer_name)
+        console.log("Users", users)
         // const inputValue = inputRef.current.state.value;
-        if (typeof retailer_name == 'undefined' || retailer_name == '') {
-            console.log("Getting undefined")
+        if (typeof retailer_name == "undefined" || retailer_name == "") {
+            console.log("Getting undefined");
         } else {
-            setRetailers([...retailers, retailer_name]);
+            if (retailers.data.includes(retailFormValue)) {
+                toast("Retailer already added!");
+                return;
+            }
+            for (const user in users.data){
+                if (user.username.toLowerCase() == retailer_name.toLowerCase()) {
+                    // console.log("Setting User: ", user.username)
+                    setRetailers({ data: [...retailers.data, user.address] });
+                }
+            }
+            // setRetailers({ data: [...retailers.data, retailer_name] });
         }
         form.resetFields(["retailer"]);
     };
@@ -60,39 +81,45 @@ function ExecuteManf() {
     };
 
     const onFinish = async values => {
-        const d = new Date();
-        const joinedAt = d.toISOString();
-        console.log(retailers);
-        const data = { ...values, joinedAt, orders: [{}], retailers };
-        const response = await axios({
-            method: "POST",
-            data: data,
-            url: "http://localhost:8000/user/register",
-        });
+        try {
+            const wallet = await connectWallet();
 
-        const status = response.data.code;
+            const signed = retailers.data.map(() => false);
 
-        if (status == 200) {
-            localStorage.setItem(
-                "token",
-                response.data.data[0]["access token"],
+            const execute = await wallet.contract.manufactureProduct(
+                retailers.data[retailers.data.length - 1],
+                values.price,
+                values.product_name,
+                values.product_description,
+                ["ABCD.png"],
+                retailers.data,
+                signed,
             );
-            location.href = "http://localhost:3000/";
-            toast("Registered Successsfully!");
-        } else {
-            toast("Username must be unique!");
+            toast("Your product is added Successfully!");
+            router.push("/");
+        } catch (error) {
+            console.log(error);
         }
     };
-    // This is what you have to change
-    // Used the name sampleArray at various places, so you can change those 
-    // places or add the value to this array
-    const sampleArray = [
-        { value: '1', label: 'Retailer 1' },
-        { value: '2', label: 'Retailer 2' },
-        { value: '3', label: 'Retailer 3' }
-    ];
 
-    const items = ['Item 1', 'Item 2', 'Item 3'];
+    const getUsers = async () => {
+        const response = await axios.get("http://localhost:5000/user/");
+
+        let u = response.data.users;
+        u = u.map(element => {
+            return {
+                username: element.username,
+                address: element.address,
+            };
+        });
+
+        setusers({ data: u });
+    };
+
+    useEffect(() => {
+        getUsers();
+    }, []);
+
     return (
         <>
             <Form
@@ -116,8 +143,11 @@ function ExecuteManf() {
                             message: "Please input your email!",
                         },
                     ]}>
-                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="text" placeholder="Customer Address" />
+                    <Input
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text"
+                        placeholder="Customer Address"
+                    />
                 </Form.Item>
                 <Form.Item
                     className="relative z-0 w-full mb-6 group"
@@ -128,8 +158,11 @@ function ExecuteManf() {
                             message: "Please enter the price!",
                         },
                     ]}>
-                    <Input className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="text" placeholder="10000 INR" />
+                    <Input
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        type="text"
+                        placeholder="10000 INR"
+                    />
                 </Form.Item>
                 <Form.Item
                     className="relative z-0 w-full mb-6 group"
@@ -142,7 +175,8 @@ function ExecuteManf() {
                     ]}>
                     <Input
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="text" placeholder="Product Name"
+                        type="text"
+                        placeholder="Product Name"
                     />
                 </Form.Item>
                 <Form.Item
@@ -156,7 +190,8 @@ function ExecuteManf() {
                     ]}>
                     <Input
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        type="text" placeholder="Product Description"
+                        type="text"
+                        placeholder="Product Description"
                     />
                 </Form.Item>
 
@@ -172,9 +207,13 @@ function ExecuteManf() {
                 </div> */}
 
                 <div className="text-center pt-8">
-                    <span className="font-bold text-lg">Add Images of the product below </span>
+                    <span className="font-bold text-lg">
+                        Add Images of the product below{" "}
+                    </span>
                     <br />
-                    <span className=" font-normal">(You can add multiple images, one at a time)</span>
+                    <span className=" font-normal">
+                        (You can add multiple images, one at a time)
+                    </span>
                 </div>
 
                 <Form.Item
@@ -182,9 +221,7 @@ function ExecuteManf() {
                     name="upload"
                     label="Upload"
                     valuePropName="fileList"
-                    getValueFromEvent={normFile}
-                >
-
+                    getValueFromEvent={normFile}>
                     <Upload name="logo" action="/upload.do" listType="picture">
                         <Button icon={<UploadOutlined />}>
                             Click to upload
@@ -200,48 +237,52 @@ function ExecuteManf() {
                     <span className=" font-normal">
                         (Select add user to add multiple retailers)
                     </span>
-                    <span className="font-bold text-lg">Add names of Retailers below </span>
-                    <br />
-                    <span className="font-normal">(Select add user to add multiple retailers)</span>
                 </div>
-
-
-
 
                 {/* Retailer data--------------------------------------------
 ----------------------------------------------------------- */}
                 {/* Add retailer input */}
-                <div className="">
+                <div className="flex justify-end">
                     <Form.Item
                         className=""
                         label="Retailer"
                         name="retailer"
-                        rules={[{ required: true, message: 'Please input retailer name' }]}
-                    >
+                        rules={[
+                            {
+                                message: "Please input retailer name",
+                            },
+                        ]}>
                         <Input
                             type="text"
                             className="block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                             value={searchValue}
                             onChange={handleInputChange}
+                            onFocus={e => setFocused(true)}
                         />
-                        {sampleArray.length > 0 && (
+                        {users.data.length > 0 && focused && (
                             <ul className="absolute z-10 left-0 right-0 mt-2 p-2 bg-white border border-gray-300 rounded-md">
-                                {sampleArray.map((option, index) => (
+                                {users.data.map((option, index) => (
                                     <li
                                         key={index}
                                         className="cursor-pointer hover:bg-gray-100"
-                                        onClick={() => handleOptionSelect(option.label)}
-                                    >
-                                        {option.label}
+                                        onClick={() =>
+                                            handleOptionSelect(option.address)
+                                        }>
+                                        {option.username}
                                     </li>
                                 ))}
                             </ul>
                         )}
                     </Form.Item>
                     {/* Button to add retailer */}
-                    <Button className="inline-flex bg-blue-700" type="primary" onClick={handleAddRetailer}>Add retailer</Button>
+                    <Button
+                        className="inline-flex bg-blue-700"
+                        type="primary"
+                        onClick={handleAddRetailer}>
+                        Add retailer
+                    </Button>
                 </div>
-                <OrderedList items={items}></OrderedList>
+                <OrderedList items={retailers.data}></OrderedList>
                 <ToastContainer />
 
                 <Form.Item>

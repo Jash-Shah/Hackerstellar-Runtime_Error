@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Button, Checkbox, Form, Input, Radio } from "antd";
-// import { Radio } from "antd";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import connectWallet from "../connectWallet.js";
+import { ethers } from "ethers";
 
 function RegisterForm() {
     const router = useRouter();
@@ -20,6 +19,11 @@ function RegisterForm() {
     };
 
     const onFinish = async values => {
+        if (!ethers.utils.isAddress(values.address)) {
+            toast("Enter correct wallet address!");
+            return;
+        }
+
         const response = await axios({
             method: "POST",
             data: { ...values, typeofuser: type },
