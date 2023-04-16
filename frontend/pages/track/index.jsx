@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "antd";
+import { Button, Input } from "antd";
+import InputWithDropdown from "../../components/InputWithDropdown";
 // import Head from "next/head"
 
 const Index = () => {
@@ -38,7 +39,9 @@ const Index = () => {
       };
 
     return (
-        <div>
+        <div className="dark:bg-gray-900">
+            <h1 className="text-4xl mb-2 font-extrabold text-neutral-200"> Search</h1>
+            <Input placeholder="Search for Product Ids"></Input>
             <div className="min-h-screen bg-white-400 dark:bg-gray-900 py-6 p-4 md:p-0 flex flex-col justify-center sm:py-12">
                 <div className="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
                     <div className="relative text-gray-700 antialiased text-sm font-semibold">
