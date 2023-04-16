@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "antd";
+import { useRouter } from 'next/router';
 // import Head from "next/head"
 
 const Index = () => {
@@ -29,11 +30,17 @@ const Index = () => {
     // const [defectiveAt,setDefectiveAt]=useState("None");  //1-manufacture 2- retailer 3-customer
 
 
+    const router = useRouter();
+    function handleButtonClick() {
+        router.push('/help');
+      }
+    
+
     return (
         <div>
             
             <div className="min-h-screen bg-white-400 dark:bg-gray-900 py-6 p-4 md:p-0 flex flex-col justify-center sm:py-12">
-            <div className="font-bold text-2xl text-center mb-12 ">Defective Product Timeline</div>
+            <div className="font-bold text-2xl text-center mb-12 dark:text-white">Defective Product Timeline</div>
                 <div className="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
                     
                     <div className="relative text-gray-700 antialiased text-sm font-semibold">
@@ -62,7 +69,7 @@ const Index = () => {
                                             <span className="font-sm">
                                                 {" "}
                                                 {/* {defectiveManf} */}
-                                                {!defectiveManf ? <div>It is not defective</div> : <div>It is <span className="font-bold">defective</span></div>}
+                                                {!defectiveManf ? <div className="text-green-600 font-bold">Not Defective</div> : <div className="font-bold text-red-600 ">It is Defective</div>}
   
                                             </span>
                                         </div>
@@ -102,7 +109,7 @@ const Index = () => {
                                     <span className="font-bold">Retailer :</span>
                                     <span className="font-sm">{retailer.name}</span>
                                     <br />
-                                    {!retailer.IsDefective ? <div>It is not defective</div> : <div>It is <span className="font-bold">defective</span></div>}
+                                    {!retailer.IsDefective ? <div className="text-green-600 font-bold">Not Defective</div> : <div className="font-bold text-red-600 ">It is Defective</div>}
                                 </div>
                                 </div>
                             </div>
@@ -150,7 +157,7 @@ const Index = () => {
                                             <span className="font-sm">
                                                 {" "}
                                                 {/* {defectiveManf} */}
-                                                {!defectiveManf ? <div>It is not defective</div> : <div>It is <span className="font-bold">defective</span></div>}
+                                                {!defectiveManf ? <div className="text-green-600 font-bold">Not Defective</div> : <div className="font-bold text-red-600 ">It is Defective</div>}
   
                                             </span>
                                         </div>
@@ -174,10 +181,11 @@ const Index = () => {
                             </div>
                         </div>
 
-                        <div className="flex mt-16 justify-center items-center">
-                            <Button className="font-bold" type="primary" danger>
-                                Return
-                            </Button>
+                        <div className="flex mt-16  justify-center items-center">
+                        <Button className="font-bold text-lg" onClick={handleButtonClick} type="primary" danger>
+  Make a Complaint
+</Button>
+
                         </div>
                     </div>
                 </div>

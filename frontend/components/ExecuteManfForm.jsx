@@ -144,7 +144,7 @@ function ExecuteManf() {
                         },
                     ]}>
                     <Input
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        className="block dark:placeholder-gray-100 py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         type="text"
                         placeholder="Customer Address"
                     />
@@ -159,7 +159,7 @@ function ExecuteManf() {
                         },
                     ]}>
                     <Input
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        className="block dark:placeholder-gray-100 py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         type="text"
                         placeholder="10000 INR"
                     />
@@ -174,13 +174,14 @@ function ExecuteManf() {
                         },
                     ]}>
                     <Input
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        className="block dark:placeholder-gray-100 py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         type="text"
+                        
                         placeholder="Product Name"
                     />
                 </Form.Item>
                 <Form.Item
-                    className="relative z-0 w-full mb-6 group"
+                    className="relative  z-0 w-full mb-6 group"
                     name="product_description"
                     rules={[
                         {
@@ -189,7 +190,7 @@ function ExecuteManf() {
                         },
                     ]}>
                     <Input
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        className="block dark:placeholder-gray-100 py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         type="text"
                         placeholder="Product Description"
                     />
@@ -207,11 +208,11 @@ function ExecuteManf() {
                 </div> */}
 
                 <div className="text-center pt-8">
-                    <span className="font-bold text-lg">
+                    <span className="font-bold text-lg dark:text-white">
                         Add Images of the product below{" "}
                     </span>
                     <br />
-                    <span className=" font-normal">
+                    <span className=" font-normal dark:text-white">
                         (You can add multiple images, one at a time)
                     </span>
                 </div>
@@ -219,22 +220,22 @@ function ExecuteManf() {
                 <Form.Item
                     className="my-6"
                     name="upload"
-                    label="Upload"
+                    label={<span className="dark:text-white">Upload</span>}
                     valuePropName="fileList"
                     getValueFromEvent={normFile}>
-                    <Upload name="logo" action="/upload.do" listType="picture">
-                        <Button icon={<UploadOutlined />}>
+                    <Upload className="dark:text-white" name="logo" action="/upload.do" listType="picture">
+                        <Button className="dark:text-white" icon={<UploadOutlined />}>
                             Click to upload
                         </Button>
                     </Upload>
                 </Form.Item>
 
                 <div className="text-center pt-8">
-                    <span className="font-bold text-lg">
+                    <span className="font-bold text-lg dark:text-white">
                         Add names of Retailers below{" "}
                     </span>
                     <br />
-                    <span className=" font-normal">
+                    <span className=" font-normal dark:text-white">
                         (Select add user to add multiple retailers)
                     </span>
                 </div>
@@ -245,7 +246,7 @@ function ExecuteManf() {
                 <div className="flex justify-end">
                     <Form.Item
                         className=""
-                        label="Retailer"
+                        label={<span className="dark:text-white">Retailer</span>}
                         name="retailer"
                         rules={[
                             {
