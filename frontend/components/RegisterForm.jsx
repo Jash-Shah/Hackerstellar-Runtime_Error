@@ -40,6 +40,7 @@ function RegisterForm() {
             console.log(object);
 
             localStorage.setItem("username", user.username);
+            localStorage.setItem("type", user.typeofuser);
             toast("Registered Successsfully!");
             location.href = process.env.WEB_URL + "/";
         } else {
@@ -129,7 +130,7 @@ function RegisterForm() {
                     </p>{" "}
                     <Radio.Group onChange={onRadioChange} value={type}>
                         <Radio value={"User"} className="dark:text-white">
-                            User
+                            Customer
                         </Radio>
                         <Radio value={"Retailer"} className="dark:text-white">
                             Retailer

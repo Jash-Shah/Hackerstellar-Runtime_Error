@@ -21,6 +21,17 @@ userRouter.get("/", async (req, res) => {
     res.status(200).json({ users: users });
 });
 
+userRouter.get("/:username", async (req, res) => {
+    await connection();
+
+    try {
+        const user = await User.find({ username: req.params.username });
+        res.status(200).json({ user });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 userRouter.post("/register", async (req, res) => {
     try {
         // Get user input

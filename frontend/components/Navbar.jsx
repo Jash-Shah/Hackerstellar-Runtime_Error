@@ -10,13 +10,16 @@ function Navbar() {
     const [isopen, setisopen] = useState(false);
     const [log, setlog] = useState(false);
     const [dark, setdark] = useState(false);
+    const [type, settype] = useState("");
 
     const router = useRouter();
 
     const logoutHandler = () => {
         localStorage.removeItem("username");
+        localStorage.removeItem("type");
         setlog(false);
-        router.reload();
+        router.push("/");
+        location.href = process.env.WEB_URL + "/";
     };
 
     useEffect(() => {
@@ -25,6 +28,7 @@ function Navbar() {
         } else {
             setlog(false);
         }
+        settype(localStorage.getItem("type"));
     }, [log]);
 
     const menuOpener = () => {
@@ -126,15 +130,6 @@ function Navbar() {
                             </li>
                             <li>
                                 <Link
-                                    href="/execute"
-                                    className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                                    aria-current="page">
-                                    Execute
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
                                     href="/help"
                                     className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                                     aria-current="page">
@@ -152,6 +147,7 @@ function Navbar() {
                                 </li>
                             )}
 
+<<<<<<< Updated upstream
                             {log && (
                                 <li>
                                     <Link
@@ -162,6 +158,34 @@ function Navbar() {
                                     </Link>
                                 </li>
                             )}
+=======
+                            <li>
+                                {type == "Manufacturer" && (
+                                    <Link
+                                        href="/executeManf"
+                                        className="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                        aria-current="page">
+                                        Execute
+                                    </Link>
+                                )}
+                                {type == "Retailer" && (
+                                    <Link
+                                        href="/executeRetail"
+                                        className="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                        aria-current="page">
+                                        Execute
+                                    </Link>
+                                )}
+                                {type == "User" && (
+                                    <Link
+                                        href="/executeCustomer"
+                                        className="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                        aria-current="page">
+                                        Execute
+                                    </Link>
+                                )}
+                            </li>
+>>>>>>> Stashed changes
                         </ul>
                     </div>
                 </div>
