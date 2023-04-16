@@ -6,40 +6,6 @@ const Index = () => {
   const [userEmail, setUserEmail] = useState("YourEmail");
   const [userAddress, setUserAddress] = useState("YourWalletAddress");
   const [userType, setUserType] = useState("YourType");
-  const [newAddress, setNewAddress] = useState('');
-  const [newEmail, setNewEmail] = useState('');
-
-
-  // ------------------ for updating wallet address
-  const [showInput, setShowInput] = useState(true);
-  const handleUpdateClick = () => {
-    setUserAddress(newAddress);
-    setNewAddress('');
-  };
-
-  const handleInputChange = (event) => {
-    setNewAddress(event.target.value);
-  };
-
-  const handleVisibility = () => {
-    setShowInput(!showInput);
-  };
-
-  // -------------------for updating email
-  const [showInputEmail, setShowInputEmail] = useState(true);
-  const handleUpdateClickEmail = () => {
-    setUserEmail(newEmail);
-    setNewEmail('');
-  };
-
-  const handleInputChangeEmail = (event) => {
-    setNewEmail(event.target.value);
-  };
-
-  const handleVisibilityEmail = () => {
-    setShowInputEmail(!showInput);
-  };
-
 
   return (
     <div className="dark:bg-slate-800">
@@ -61,50 +27,22 @@ const Index = () => {
 
             {/* fields of user */}
             <div className="flex flex-col items-center lg:items-start  ">
+              
               {/* Item 1 */}
-              <div>
                 <div className='flex'>
                   <p class="pt-4 text-base font-bold flex items-center  lg:justify-start"><svg class="h-4 fill-current text-purple-700 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" /></svg>{userAddress}</p>
-                  <Button className={`ml-2 mt-4 ${showInput ? 'visible' : 'invisible'}`} onClick={handleVisibility}>Click me!</Button>
                 </div>
-
-                <div className={`flex items-center ${showInput ? 'invisible' : 'visible'}`}>
-                  <input type="text" value={newAddress} onChange={handleInputChange} className="border rounded-l-lg p-2 w-full" />
-                  <Button className="ml-2 font-bold " onClick={handleUpdateClick}>Update</Button>
-                </div>
-              </div>
-
+  
               {/* Item 2 */}
-
-
-              <div>
                 <div className='flex'>
                   <p class="pt-4 text-base font-bold flex items-center  lg:justify-start"><svg class="h-4 fill-current text-purple-700 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96" id="email"><path d="M0 11.283V8a8 8 0 0 1 8-8h112a8 8 0 0 1 8 8v3.283l-64 40zm66.12 48.11a4.004 4.004 0 0 1-4.24 0L0 20.717V88a8 8 0 0 0 8 8h112a8 8 0 0 0 8-8V20.717z" data-name="Layer 2"></path></svg>{userEmail}</p>
-                  <Button className={`ml-2 mt-4 ${showInputEmail ? 'visible' : 'invisible'}`} onClick={handleVisibilityEmail}>Click me!</Button>
                 </div>
-
-                <div className={`flex items-center ${showInputEmail ? 'invisible' : 'visible'}`}>
-                  <input type="text" value={newEmail} onChange={handleInputChangeEmail} className="border rounded-l-lg p-2 w-full" />
-                  <Button className="ml-2 font-bold " onClick={handleUpdateClickEmail}>Update</Button>
-                </div>
-              </div>
-
+ 
               {/* item 3 */}
-              <div>
-                <div className='flex'>
+              <div className='flex'>
                   <p class="pt-4 text-base font-bold flex items-center  lg:justify-start"><svg class=" text-purple-700 mr-4 " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" id="profile"><path fill="#000" fill-rule="evenodd" d="M134 2009c-2.217 0-4.019-1.794-4.019-4s1.802-4 4.019-4 4.019 1.794 4.019 4-1.802 4-4.019 4m3.776.673a5.978 5.978 0 0 0 2.182-5.603c-.397-2.623-2.589-4.722-5.236-5.028-3.652-.423-6.75 2.407-6.75 5.958 0 1.89.88 3.574 2.252 4.673-3.372 1.261-5.834 4.222-6.22 8.218a1.012 1.012 0 0 0 1.004 1.109.99.99 0 0 0 .993-.891c.403-4.463 3.836-7.109 7.999-7.109s7.596 2.646 7.999 7.109a.99.99 0 0 0 .993.891c.596 0 1.06-.518 1.003-1.109-.385-3.996-2.847-6.957-6.22-8.218" transform="translate(-124 -1999)"></path></svg>{userType}</p>
-                  <Button className={`ml-2 mt-4 invisible`} onClick={handleVisibilityEmail}>Click me!</Button>
-                </div>
-
-                <div className={`flex items-center invisible`}>
-                  <input type="text" className="border rounded-l-lg px-2 " />
-                  <Button >Update</Button>
-                </div>
               </div>
-
             </div>
-
-
 
             {/* <div class="flex justify-center items-center"> */}
             {/* <div class="flex flex-col items-center">
