@@ -147,7 +147,6 @@ function Navbar() {
                                 </li>
                             )}
 
-<<<<<<< Updated upstream
                             {log && (
                                 <li>
                                     <Link
@@ -158,7 +157,6 @@ function Navbar() {
                                     </Link>
                                 </li>
                             )}
-=======
                             <li>
                                 {type == "Manufacturer" && (
                                     <Link
@@ -185,7 +183,6 @@ function Navbar() {
                                     </Link>
                                 )}
                             </li>
->>>>>>> Stashed changes
                         </ul>
                     </div>
                 </div>
