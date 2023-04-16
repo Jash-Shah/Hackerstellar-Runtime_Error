@@ -3,7 +3,7 @@
     <img src="./web/decertify/packages/react-app/images/logo.gif" alt="deCertify" width="250" height="250">
   </a>
   <br>
-  Chainner :spiral_notepad:
+  VeriTrack :spiral_notepad:
 </h1>
 
 <div align="center">
@@ -17,18 +17,18 @@
 **VeriTrack** is a blockchain-based platform that leverages <b> distributed ledger technology</b> to enable secure and transparent tracking of luxury goods throughout the supply chain.
 
 ### Features
-Chainner offers a variety of features that enable stakeholders in the luxury goods industry to track and verify the authenticity, provenance, and quality of luxury goods throughout the supply chain. Some of the key features of Chainner include:
-- **Decentralized and immutable ledger**: Chainner uses a decentralized ledger technology that creates an immutable record of each transaction, ensuring that the data cannot be altered or tampered with.
-- **Traceability**: Chainner enables stakeholders to track the movement of luxury goods from the point of origin to the point of sale, providing transparency and traceability throughout the supply chain.
-- **Authentication**: Chainner uses advanced cryptographic techniques to authenticate luxury goods, making it easier to detect counterfeit products and prevent fraud.
-- **Provenance verification**: Chainner allows stakeholders to verify the origin and history of luxury goods, ensuring that they are ethically sourced and comply with industry standards.
-- **Quality control**: Chainner enables stakeholders to monitor the quality of luxury goods throughout the supply chain, ensuring that they are handled and transported in accordance with industry standards.
-- **Smart contracts**: Chainner uses smart contracts to automate transactions and enforce business rules, reducing the risk of errors and disputes.
-- **Transparency**: Chainner provides a transparent view of the supply chain, enabling stakeholders to access real-time information and make informed decisions.
+VeriTrack offers a variety of features that enable stakeholders in the luxury goods industry to track and verify the authenticity, provenance, and quality of luxury goods throughout the supply chain. Some of the key features of VeriTrack include:
+- **Decentralized and immutable ledger**: VeriTrack uses a decentralized ledger technology that creates an immutable record of each transaction, ensuring that the data cannot be altered or tampered with.
+- **Traceability**: VeriTrack enables stakeholders to track the movement of luxury goods from the point of origin to the point of sale, providing transparency and traceability throughout the supply chain.
+- **Authentication**: VeriTrack uses advanced cryptographic techniques to authenticate luxury goods, making it easier to detect counterfeit products and prevent fraud.
+- **Provenance verification**: VeriTrack allows stakeholders to verify the origin and history of luxury goods, ensuring that they are ethically sourced and comply with industry standards.
+- **Quality control**: VeriTrack enables stakeholders to monitor the quality of luxury goods throughout the supply chain, ensuring that they are handled and transported in accordance with industry standards.
+- **Smart contracts**: VeriTrack uses smart contracts to automate transactions and enforce business rules, reducing the risk of errors and disputes.
+- **Transparency**: VeriTrack provides a transparent view of the supply chain, enabling stakeholders to access real-time information and make informed decisions.
 
-Chainner is a blockchain-based platform that uses a variety of technologies to enable secure and transparent tracking of luxury goods throughout the supply chain. The technology stack used in Chainner includes:
+VeriTrack is a blockchain-based platform that uses a variety of technologies to enable secure and transparent tracking of luxury goods throughout the supply chain. The technology stack used in VeriTrack includes:
 
-1. **Manufacturer**: The manufacturer is responsible for creating the luxury goods and entering them into the Chainner system. The manufacturer has full access to the data related to the production of the goods, including quality control, testing, and shipment.
+1. **Manufacturer**: The manufacturer is responsible for creating the luxury goods and entering them into the VeriTrack system. The manufacturer has full access to the data related to the production of the goods, including quality control, testing, and shipment.
 
 2. **Distributor**: The distributor is responsible for transporting the luxury goods from the manufacturer to the retailer. The distributor has access to the data related to the shipment and logistics of the goods, including delivery dates, tracking information, and storage conditions.
 
@@ -38,14 +38,14 @@ Chainner is a blockchain-based platform that uses a variety of technologies to e
 
 
 ## Resources
-- [Demo Video]()
-- [GitHub Repository](https://github.com/noobCoderVP/RuntimeError_LOC5.0)
+<!-- - [Demo Video]() -->
+- [GitHub Repository](https://github.com/Jash-Shah/Hackerstellar-Runtime_Error)
 
 
 ## 🤖Tech-Stack
 
 #### Web Development
-- ReactJS
+- NextJS
 - Tailwind CSS
 
 #### Blockchain
