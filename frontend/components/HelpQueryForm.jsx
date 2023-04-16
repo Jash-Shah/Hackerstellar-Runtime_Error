@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Upload, Button } from 'antd';
-import { InboxOutlined, UploadOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { UploadOutlined } from '@ant-design/icons';
 
 
 const HelpQueryForm = () => {

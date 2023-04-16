@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import "react-toastify/dist/ReactToastify.css";
 import ExecuteRetailForm from "../../components/ExecuteRetailForm";
 
 const App = () => {

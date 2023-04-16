@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import "react-toastify/dist/ReactToastify.css";
 import ExecuteManfForm from "../../components/ExecuteManfForm";
 import connectWallet from "../../connectWallet";
 

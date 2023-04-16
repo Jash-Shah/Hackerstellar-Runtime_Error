@@ -6,10 +6,6 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { useRouter } from "next/router";
 
-// AOS
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 function Navbar() {
     const [isopen, setisopen] = useState(false);
     const [log, setlog] = useState(false);
