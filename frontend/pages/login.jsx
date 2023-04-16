@@ -9,7 +9,11 @@ const App = () => {
                 <title>Login</title>
             </Head>
             {/* Add Code to center according to the page */}
-            <LoginForm />
+            <div className="flex justify-center h-screen dark:bg-slate-800">
+                <div className="mt-64">
+                    <LoginForm />
+                </div>
+            </div>
         </>
     );
 };
