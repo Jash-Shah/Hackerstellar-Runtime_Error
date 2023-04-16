@@ -14,7 +14,11 @@ const App = () => {
             <Head>
                 <title>Register</title>
             </Head>
-            <RegisterForm></RegisterForm>
+            <div className="flex justify-center w-full h-screen">
+                <div className="mt-32 w-8/12">
+                    <RegisterForm></RegisterForm>
+                </div>
+            </div>
         </>
     );
 };
