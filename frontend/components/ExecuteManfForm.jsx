@@ -43,12 +43,15 @@ function ExecuteManf() {
             toast("Retailer already added!");
             return;
         }
+        
         setRetailers({ data: [...retailers.data, selectedValue] });
     };
 
     // add a function to handle adding a retailer to the array
     const handleAddRetailer = () => {
         const retailer_name = retailFormValue;
+        console.log("Retailer Name: ", retailer_name)
+        console.log("Users", users)
         // const inputValue = inputRef.current.state.value;
         if (typeof retailer_name == "undefined" || retailer_name == "") {
             console.log("Getting undefined");
@@ -57,7 +60,13 @@ function ExecuteManf() {
                 toast("Retailer already added!");
                 return;
             }
-            setRetailers({ data: [...retailers.data, retailer_name] });
+            for (const user in users.data){
+                if (user.username.toLowerCase() == retailer_name.toLowerCase()) {
+                    // console.log("Setting User: ", user.username)
+                    setRetailers({ data: [...retailers.data, user.address] });
+                }
+            }
+            // setRetailers({ data: [...retailers.data, retailer_name] });
         }
         form.resetFields(["retailer"]);
     };
@@ -86,7 +95,7 @@ function ExecuteManf() {
                 retailers.data,
                 signed,
             );
-            toast("Your product is added Successsfully!");
+            toast("Your product is added Successfully!");
             router.push("/");
         } catch (error) {
             console.log(error);
