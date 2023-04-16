@@ -58,7 +58,7 @@ function Navbar() {
                             alt="VeriTrack Logo"
                         />
                         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                            Veri<span style={{color:"#a142f5"}}>Track</span>
+                            Veri<span style={{ color: "#a142f5" }}>Track</span>
                         </span>
                     </div>
                     <div className="flex md:order-2">
@@ -152,6 +152,17 @@ function Navbar() {
                                         className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
                                         aria-current="page">
                                         Login
+                                    </Link>
+                                </li>
+                            )}
+
+                            {log && (
+                                <li>
+                                    <Link
+                                        href="/previousOrders"
+                                        className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                        aria-current="page">
+                                        Your Products
                                     </Link>
                                 </li>
                             )}
