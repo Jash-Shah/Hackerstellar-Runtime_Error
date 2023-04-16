@@ -1,7 +1,7 @@
 import { Router } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 import user from "../models/user.js";
 const User = mongoose.model("user", user);
@@ -12,9 +12,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const userRouter = Router();
+connection();
 
-userRouter.get("/", (req, res) => {
-    res.status(200).json({ message: "User route connected!" });
+userRouter.get("/", async (req, res) => {
+    await connection();
+
+    const users = await User.find({});
+    res.status(200).json({ users: users });
 });
 
 userRouter.post("/register", async (req, res) => {

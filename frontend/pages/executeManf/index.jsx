@@ -10,9 +10,9 @@ const App = () => {
         console.log(wallet);
     };
 
-    useEffect(() => {
-        handler();
-    }, []);
+    // useEffect(() => {
+    //     handler();
+    // }, []);
 
     return (
         <>
