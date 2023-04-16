@@ -23,10 +23,8 @@ VeriTrack offers a variety of features that enable stakeholders in the  goods in
 - **Authentication**: VeriTrack uses advanced cryptographic techniques to authenticate goods, making it easier to detect counterfeit products and prevent fraud.
 - **Provenance verification**: VeriTrack allows stakeholders to verify the origin and history of goods, ensuring that they are ethically sourced and comply with industry standards.
 - **Quality control**: VeriTrack enables stakeholders to monitor the quality of goods throughout the supply chain, ensuring that they are handled and transported in accordance with industry standards.
-- **Smart contracts**: VeriTrack uses smart contracts to automate transactions and enforce business rules, reducing the risk of errors and disputes.
-- **Transparency**: VeriTrack provides a transparent view of the supply chain, enabling stakeholders to access real-time information and make informed decisions.
 
-VeriTrack is a blockchain-based platform that uses a variety of technologies to enable secure and transparent tracking of  goods throughout the supply chain. The technology stack used in VeriTrack includes:
+VeriTrack is a blockchain-based platform that uses a variety of technologies to enable secure and transparent tracking of  goods throughout the supply chain. The access levels in VeriTrack include:
 
 1. **Manufacturer**: The manufacturer is responsible for creating the goods and entering them into the VeriTrack system. The manufacturer has full access to the data related to the production of the goods, including quality control, testing, and shipment.
 
@@ -34,6 +32,15 @@ VeriTrack is a blockchain-based platform that uses a variety of technologies to 
 
 3. **Consumer**: The consumer is the end customer who purchases the  goods. The consumer has access to the data related to the authenticity, provenance, and quality of the goods, including certification and verification information.
 
+
+## Features
+### Blockchain
+We are using the Ethers Blockchain to host our Smart Contracts. These Contract ensure that data is stored on the blockchain in a non-tamperable format.
+### Machine Learning
+We are using Machine Learning to scan images from the manufacturer, retailer and customer in order to provide proof of tamperment and damage at each step.
+The model used is *name*
+Some of our results with training it:
+![ML Graph](assets/ml.jpeg) 
 
 ## Resources
 <!-- - [Demo Video]() -->
