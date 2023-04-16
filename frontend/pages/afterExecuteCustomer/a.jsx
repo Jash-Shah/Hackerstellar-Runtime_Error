@@ -4,47 +4,37 @@ import { Button } from "antd";
 
 const Index = () => {
     const [manfName, setManfName] = useState("M Name");
-    const [manfSend, setManfSend] = useState("9 am");
-    // const [retailName, setRetailName] = useState("Retailer Name");
-    // const [retailReceived, setRetailReceived] = useState("10am");
-    // const [retailSent, setRetailSent] = useState("11 am");
+    const [defectiveManf, setDefectiveManf] = useState(0);
+
 
     const [retailers, setRetailers] = useState([
         {
           name: "Retailer 1",
-          received: "10 am",
-          sent: "11 am",
+          IsDefective: 0,
         },
         {
           name: "Retailer 2",
-          received: "11 am",
-          sent: "12 pm",
+          IsDefective: 1,
         },
       ]);
+    // const [retailName, setRetailName] = useState("Retailer Name");
+    // const [defectiveRetail, setDefectiveRetail] = useState(1);
 
     const [userName, setUserName] = useState("User Name");
-    const [userReceived, setUserReceived] = useState("2 pm");
+    const [defectiveUser,setDefectiveUser] = useState(0);
+    // const [defectiveAt,setDefectiveAt]=useState("None");  //1-manufacture 2- retailer 3-customer
 
-    // optional function to add the retailer
-    const addRetailer = () => {
-        setRetailers([
-          ...retailers,
-          {
-            name: `Retailer ${retailers.length + 1}`,
-            received: "10 am",
-            sent: "11 am",
-          },
-        ]);
-      };
 
     return (
         <div>
+            
             <div className="min-h-screen bg-white-400 dark:bg-gray-900 py-6 p-4 md:p-0 flex flex-col justify-center sm:py-12">
+            <div className="font-bold text-2xl text-center mb-12 ">Defective Product Timeline</div>
                 <div className="py-3 sm:max-w-xl sm:mx-auto w-full px-2 sm:px-0">
+                    
                     <div className="relative text-gray-700 antialiased text-sm font-semibold">
                         {/* <!-- Vertical bar running through middle --> */}
-                        <div className="hidden sm:block w-1  bg-green-400 absolute h-3/4 left-1/2 transform -translate-x-1/2"></div>
-
+                        <div className="hidden sm:block w-1  bg-gray-400 absolute h-3/4 left-1/2 transform -translate-x-1/2"></div>
 
 
 {/* -----------------------------------------Manufacture section------------------------ */}
@@ -65,17 +55,16 @@ const Index = () => {
                                                 {manfName}
                                             </span>
                                             <br />
-                                            <span className="font-bold">
-                                                Product Shipped at :
-                                            </span>
                                             <span className="font-sm">
                                                 {" "}
-                                                {manfSend}
+                                                {/* {defectiveManf} */}
+                                                {!defectiveManf ? <div>It is not defective</div> : <div>It is <span className="font-bold">defective</span></div>}
+  
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="rounded-full bg-green-600  border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
+                                <div className={`rounded-full border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center ${defectiveManf ? 'bg-red-600' : 'bg-green-600'}`}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-5 w-5 text-white"
@@ -95,11 +84,10 @@ const Index = () => {
 
 
 
-
-
 {/*------------------------------Retailer Section------------------------------  */}
-                      
-                      
+
+
+
                         {/* <!-- Right section, set by justify-end and sm:pl-8 --> */}
                         <div className="mt-6 sm:mt-0 sm:mb-12">
                             {retailers.map((retailer) => (
@@ -110,18 +98,12 @@ const Index = () => {
                                     <span className="font-bold">Retailer :</span>
                                     <span className="font-sm">{retailer.name}</span>
                                     <br />
-                                    <span className="font-bold">
-                                    Product Received at :
-                                    </span>
-                                    <span className="font-sm">{retailer.received}</span>
-                                    <br />
-                                    <span className="font-bold">Product shipped by :</span>
-                                    <span className="font-sm">{retailer.sent}</span>
-                                    <br />
+                                    {!retailer.IsDefective ? <div>It is not defective</div> : <div>It is <span className="font-bold">defective</span></div>}
                                 </div>
                                 </div>
                             </div>
-                            <div className="rounded-full bg-green-600 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
+                            
+                            <div className={`rounded-full border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center ${retailer.IsDefective ? 'bg-red-600' : 'bg-green-600'}`}>
                                 <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5 text-white"
@@ -143,10 +125,10 @@ const Index = () => {
                         </div>
 
 
-
 {/* ----------------------------------Customer Section---------------------------------------------------- */}
-                  
-                  
+
+
+
                         {/* <!-- Left section, set by justify-start and sm:pr-8 --> */}
                         <div className="mt-6 sm:mt-0 sm:mb-12">
                             <div className="flex flex-col sm:flex-row items-center">
@@ -161,18 +143,16 @@ const Index = () => {
                                                 {userName}
                                             </span>
                                             <br />
-                                            <span className="font-bold">
-                                                Product Received at :
-                                            </span>
                                             <span className="font-sm">
                                                 {" "}
-                                                {userReceived}
+                                                {/* {defectiveManf} */}
+                                                {!defectiveManf ? <div>It is not defective</div> : <div>It is <span className="font-bold">defective</span></div>}
+  
                                             </span>
-                                            <br />
                                         </div>
                                     </div>
                                 </div>
-                                <div className="rounded-full bg-green-600 border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
+                                <div className={`rounded-full border-white border-4 w-8 h-8 absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center ${defectiveUser ? 'bg-red-600' : 'bg-green-600'}`}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-5 w-5 text-white"
