@@ -14,7 +14,7 @@ const App = () => {
             <Head>
                 <title>Register</title>
             </Head>
-            <div className="flex justify-center w-full h-screen dark:bg-slate-700">
+            <div className="flex justify-center w-full h-screen dark:bg-slate-800">
                 <div className="mt-32 w-8/12">
                     <RegisterForm></RegisterForm>
                 </div>
