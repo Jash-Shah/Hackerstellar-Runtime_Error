@@ -1,8 +1,4 @@
 <h1 align="center">
-  <a href="https://github.com/Jash-Shah/Hackerstellar-Runtime_Error">
-    <img src="./web/decertify/packages/react-app/images/logo.gif" alt="deCertify" width="250" height="250">
-  </a>
-  <br>
   VeriTrack :spiral_notepad:
 </h1>
 
